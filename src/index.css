@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: 'jetbrains-mono';
+  src: url('./assets/fonts/jetbrains-mono/jetbrains-mono-variable.ttf') format('ttf');
+}
+body{
+  background-color: #171717;
+    font-family: 'jetbrains-mono', monospace;
+}
