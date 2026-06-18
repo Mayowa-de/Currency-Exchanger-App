@@ -10,13 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "apexcharts": "^5.15.0",
     "react": "^19.2.0",
     "react-apexcharts": "^2.1.0",
-=======
-    "react": "^19.2.0",
->>>>>>> 301ec69c0a2e794b4c90ad2a755693b8d99e89cb
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
@@ -24,20 +20,12 @@
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
-<<<<<<< HEAD
     "autoprefixer": "^10.5.0",
-=======
->>>>>>> 301ec69c0a2e794b4c90ad2a755693b8d99e89cb
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
-<<<<<<< HEAD
     "postcss": "^8.5.15",
-    "tailwindcss": "^3.4.19",
-    "vite": "^8.0.16"
-=======
-    "vite": "^7.2.4"
->>>>>>> 301ec69c0a2e794b4c90ad2a755693b8d99e89cb
+    "tailwindcss": "^3.4.19"
   }
 }
