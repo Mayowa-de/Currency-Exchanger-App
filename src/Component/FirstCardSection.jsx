@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Exchange from '../assets/images/icon-exchange.svg'
+import StarIcon from '../assets/images/icon-star.svg'
+import StarFillIcon from '../assets/images/icon-star-filled.svg'
 
 export default function FirstCardSection() {
+  const [isStared, setisStared] = useState(false)
   return (
     <section className='flex flex-col w-[1036px] h-[931px] gap-[16px]'>
       <h1 className='laptop:text-[20px] text-[jetbrains-mono, regular] tracking-[-0.5px] leading-[120%] text-[#FFFFFF]'>CHECK RATE</h1>
@@ -40,12 +43,12 @@ export default function FirstCardSection() {
         </div>
 
         <hr className='text-[5px] border-dashed border-[1px] border-neutral-900 leading-1' />
-
         <div className='flex justify-between items-center'>
           <div></div>
 
           <div className='flex gap-2'>
-            <button className='bg-[#CEF739] focus:border-neutral-900 focus:border-[1px] focus:ring-[#CEF739] focus:ring-1 focus:outline-none  leading-[1.3] tracking-[0.5px] rounded-[8px] px-[12px] p-[8px]'>Favorited</button>
+
+            <button className='bg-[#CEF739] flex  focus:border-neutral-900 focus:border-[1px] focus:ring-[#CEF739] focus:ring-1 focus:outline-none  leading-[1.3] tracking-[0.5px] rounded-[8px] px-[12px] p-[8px] items-center gap-[8px]' onClick={()=>setisStared(!isStared)}>{isStared ? <img src={StarFillIcon} width={'16px'} height={'16px'} alt='star-filled-icon' className="shadow-md"/> : <img src={StarIcon} width={'16px'} height={'16px'} alt='star-icon' className='text-neutral-900  overflow-hidden'/>}Favorited</button>
             <button className='focus:ring-[#CEF739] focus:ring-2 focus:outline-none  leading-[1.3] tracking-[0.5px] text-neutral-50 text-[12px] bg-neutral-900 rounded-[8px] px-[12px] p-[8px]'>LOG CONVERSION</button>
           </div>
         </div>
