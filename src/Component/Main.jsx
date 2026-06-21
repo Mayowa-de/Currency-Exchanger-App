@@ -4,7 +4,7 @@ import HistorySection from './HistorySection'
 
 export default function Main() {
   return (
-    <div className='flex flex-col items-center justify-center laptop:px-[32px] laptop:p-[48px] laptop:w-[1100px] laptop:h-[607px]'>
+    <div className='flex flex-col items-center justify-center md:px-[32px] md:p-[48px] md:w-[1100px] md:h-[607px] w-full'>
         <FirstCardSection/>
         <HistorySection/>
     </div>

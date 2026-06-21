@@ -6,12 +6,12 @@ import StarFillIcon from '../assets/images/icon-star-filled.svg'
 export default function FirstCardSection() {
   const [isStared, setisStared] = useState(false)
   return (
-    <section className='flex flex-col w-[1036px] h-[931px] gap-[16px]'>
-      <h1 className='laptop:text-[20px] text-[jetbrains-mono, regular] tracking-[-0.5px] leading-[120%] text-[#FFFFFF]'>CHECK RATE</h1>
+    <section className='flex flex-col md:w-[1036px] md:h-[931px]  gap-[16px]'>
+      <h1 className='md:text-[20px] text-[jetbrains-mono, regular] tracking-[-0.5px] leading-[120%] text-[#FFFFFF]'>CHECK RATE</h1>
 
-      <div className='flex flex-col  bg-[#202022] px-[20px] p-[20px] rounded-[24px] gap-[24px]'>
-        <div className='flex gap-[8px] items-center justify-center'>
-          <div className='laptop:w-[450px] w-full laptop:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
+      <div className='md:flex  flex flex-col  bg-[#202022] px-[20px] p-[20px] rounded-[24px] gap-[24px]'>
+        <div className='md:flex flex  gap-[8px] items-center justify-center'>
+          <div className='md:w-[450px] w-full  md:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND</h2>
             <div className='flex justify-between gap-[auto]'>
               <input type="text" className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
