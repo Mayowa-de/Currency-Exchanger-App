@@ -1,16 +1,18 @@
 import React, {useState} from 'react'
+import Vertical_Exchange from '../assets/images/icon-exchange-vertical.svg'
 import Exchange from '../assets/images/icon-exchange.svg'
 import StarIcon from '../assets/images/icon-star.svg'
+import {Select, SelectItem} from 'react-aria-components'
 import StarFillIcon from '../assets/images/icon-star-filled.svg'
 
 export default function FirstCardSection() {
   const [isStared, setisStared] = useState(false)
   return (
-    <section className='flex flex-col md:w-[1036px] md:h-[931px]  gap-[16px]'>
+    <section className='flex flex-col w-full md:w-[1036px] md:h-[931px]  gap-[16px]'>
       <h1 className='md:text-[20px] text-[jetbrains-mono, regular] tracking-[-0.5px] leading-[120%] text-[#FFFFFF]'>CHECK RATE</h1>
 
       <div className='md:flex  flex flex-col  bg-[#202022] px-[20px] p-[20px] rounded-[24px] gap-[24px]'>
-        <div className='md:flex flex  gap-[8px] items-center justify-center'>
+        <div className='md:flex flex flex-col gap-[10px]  md:gap-[8px] items-center justify-center'>
           <div className='md:w-[450px] w-full  md:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND</h2>
             <div className='flex justify-between gap-[auto]'>
@@ -25,18 +27,19 @@ export default function FirstCardSection() {
             </div>
           </div>
           <div className='w-[48px] h-[48px] px-[10px] p-[10px] bg-[#2E2E2E] rounded-[8px] items-center flex justify-center focus:border-2 focus:border-[#CEF739]' role='button'>
-            <img src={Exchange} alt="exchange-icon" className='w-[20px] h-[20px] items-center flex' />
+            <img src={Vertical_Exchange} alt="exchange-icon-vertical" className='w-[20px] h-[20px] items-center flex '/>
+            <img src={Exchange} alt="exchange-icon" className='w-[20px] h-[20px] items-center md:flex hidden' />
           </div>
           <div className='laptop:w-[450px] w-full laptop:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>RECEIVE</h2>
             <div className='flex justify-between gap-[auto]'>
               <input type="text" className='w-[123px]  h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem]  rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]' />
               <div className='w-[96px] h-[40px] gap[8px] bg-[#2E2E2E] border-[1px] border-[#3D3D3D] p-[10px] px-[10px] rounded-[8px] '>
-                <select name="" id="" className='bg-transparent appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px]'>
-                  <option value="USD" className='cursor-pointer'>USD</option>
-                  <option value="EUR">EUR</option>
-                  <option value="USD">USD</option>
-                </select>
+                <Select  id="" className='bg-transparent appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px]'>
+                  <SelectItem value="USD" className='cursor-pointer'>USD</SelectItem>
+                  <SelectItem value="EUR">EUR</SelectItem>
+                  <SelectItem value="USD">USD</SelectItem>
+                </Select>
               </div>
             </div>
           </div>
