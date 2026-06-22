@@ -5,21 +5,21 @@ export default function HistorySectionCard() {
 
   const listDate =['1D','1W', '1M', '1Y', '5Y'];
   return (
-    <div className='md:flex flex flex-col md:justify-between gap-[16px] items-center'>
-      <div className='md:flex gap-[16px] grid grid-cols-2 '>
-        <div className='flex flex-col gap-[16px] text-neutral-400 w-[140px] h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
+    <div className='md:flex-row flex flex-col md:justify-between gap-[16px]  md:items-center'>
+      <div className='md:flex gap-[16px] grid grid-cols-2  w-full'>
+        <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
             <p>OPEN</p>
             <span className='text-neutral-50'>0.8516</span>
         </div>
-        <div className='flex flex-col gap-[16px] text-neutral-400 w-[140px] h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
+        <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
             <p>LAST</p>
             <span className='text-neutral-50'>0.8530</span>
         </div>
-        <div className='flex flex-col gap-[16px] text-neutral-400 w-[140px] h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
+        <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
             <p>CHANGE</p>
             <span className='text-green-500'>+0.0014</span>
         </div>
-        <div className='flex flex-col gap-[16px] text-neutral-400 w-[140px] h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
+        <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
             <p>% CHANGE</p>
             <span className='text-green-500'>+0.16%</span>
         </div>
