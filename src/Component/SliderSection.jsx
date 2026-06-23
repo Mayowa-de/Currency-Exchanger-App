@@ -37,7 +37,7 @@ export default function SliderSection() {
         animate={{ x: ["0%", "-50%"] }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
         {[...(currentData || []), ...(currentData || [])].map((currency, index) => (
-          <div key={`${currency.code}-${index}`} className='flex flex-row gap-[12px] border-r-[2px] border-l-[2px]'>
+          <div key={`${currency.code}-${index}`} className='flex flex-row gap-[12px] border-r-[2px] border-r-white/20'>
             <li className='text-[#FFFFFF] text-[10px] md:text-[12px] tracking-[1px] font-semibold'>
               {currency.base}/{currency.code}
             </li>
