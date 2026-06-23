@@ -36,7 +36,7 @@ export default function SliderSection() {
           <div key={`${currency.code}-${index}`} className='flex flex-row gap-[16px] '>
           <li className='text-[#FFFFFF] text-[10px] md:text-[12px] tracking-[1px] font-semibold'>{currency.base}/{currency.code}</li>
             <li className='text-[#FFFFFF] text-[10px] md:text-[12px] tracking-[1px] font-semibold'>{currency.rate}</li>
-          <li className={`text-[10px] md:text-[12px] tracking-[1px] flex items-center font-semibold ${currency.percentageChange > 0 ? 'text-green-500' : 'text-red-500'}`}><img src={chevronIcon}/> {currency.percentageChange}%</li>
+          <li className={`text-[10px] md:text-[12px] tracking-[1px] flex items-center font-semibold ${currency.percentageChange > 0 ? 'text-green-500' 'rotate-180': 'text-red-500'}`}><img src={chevronIcon}/> {currency.percentageChange}%</li>
             </div>
          ))}
           </motion.div>
