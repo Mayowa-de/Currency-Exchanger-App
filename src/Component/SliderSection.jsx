@@ -33,10 +33,10 @@ export default function SliderSection() {
          animate={{x: ["0%", "-50%"],}}
          transition={{duration: 20, repeat: Infinity, ease: "linear",}}>
         {[...(currentData || []), ...(currentData || [])].map((currency, index) => (
-          <div key={`${currency.code}-${index}`} className='flex flex-row gap-[16px] '>
+          <div key={`${currency.code}-${index}`} className='flex flex-row gap-[12px] border-r-[2px] border-l-[2px] '>
           <li className='text-[#FFFFFF] text-[10px] md:text-[12px] tracking-[1px] font-semibold'>{currency.base}/{currency.code}</li>
             <li className='text-[#FFFFFF] text-[10px] md:text-[12px] tracking-[1px] font-semibold'>{currency.rate}</li>
-          <li className={`text-[10px] md:text-[12px] tracking-[1px] flex items-center font-semibold ${currency.percentageChange > 0 ? 'text-green-500' 'rotate-180': 'text-red-500'}`}><img src={chevronIcon}/> {currency.percentageChange}%</li>
+          <li className={`text-[10px] md:text-[12px] tracking-[1px] items-center font-semibold ${currency.percentageChange > 0 ? 'text-green-500' 'rotate-180': 'text-red-500'}`}><img src={chevronIcon}/> {currency.percentageChange}%</li>
             </div>
          ))}
           </motion.div>
