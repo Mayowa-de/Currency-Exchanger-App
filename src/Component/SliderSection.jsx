@@ -49,7 +49,7 @@ export default function SliderSection() {
               {/* rotate-180 = up (green), rotate-0 = down (red) */}
               <img
                 src={chevronIcon}
-                className={`transition-transform ${currency.percentageChange > 0 ? 'rotate-180' 'text-green-500' : 'rotate-0' 'text-red-500'}`}
+                className={`transition-transform ${currency.percentageChange > 0 ? 'rotate-180 text-green-500' : 'rotate-0 text-red-500'}`}
               />
               {currency.percentageChange}%
             </li>
