@@ -11,7 +11,12 @@ export default function SliderSection() {
         const response = await fetch("https://currency-exchanger-app-backend.onrender.com/api");
         const data = await response.json()
         console.log(data)
-        setCurrentData(Array.isArray(data) ? data : Object.values(data))
+        setCurrentData(
+  data.currencies.map(currency => ({
+    ...currency,
+    base: data.base
+  }))
+)
       } catch (error) {
         console.log("Error can't fetch api", error)
       }
