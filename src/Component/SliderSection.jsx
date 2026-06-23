@@ -8,7 +8,7 @@ export default function SliderSection() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:3000/api")
+        const response = await fetch("https://currency-exchanger-app-backend.onrender.com/api");
         const data = await response.json()
         console.log(data)
         setCurrentData(Array.isArray(data) ? data : Object.values(data))
