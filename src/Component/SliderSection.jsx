@@ -30,7 +30,7 @@ export default function SliderSection() {
         </div>
           <motion.div
           className="flex gap-[4px] overflow-hidden -z-1 absolute"
-         animate={{x: ["100%", "-100%"],}}
+         animate={{x: ["0%", "-50%"],}}
          transition={{duration: 20, repeat: Infinity, ease: "linear",}}>
         {[...(currentData || []), ...(currentData || [])].map((currency, index) => (
           <div key={`${currency.code}-${index}`} className='flex flex-row gap-[16px] '>
