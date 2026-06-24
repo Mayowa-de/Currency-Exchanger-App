@@ -27,12 +27,12 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCod
                       <SelectValue placeholder={baseCurrency} />
                     </div>
                   </SelectTrigger>
-                  <SelectContent className="absolute top-24 bg-neutral-600 px-[4px]">
+                  <SelectContent className="absolute top-24 bg-neutral-500 px-[4px]">
                     {getCode.map((code) => (
                       <SelectItem key={code} value={code}>
                         <div className='flex items-center gap-2'>
                           <img src={getFlag(code)} alt={`${code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
-                          <span>{code}</span>
+                          <span className='text-neutral-600'>{code}</span>
                         </div>
                       </SelectItem>
                     ))}
@@ -57,10 +57,10 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCod
                   </SelectTrigger>
                   <SelectContent className='w-[376px] px-[4px] top-24 absolute bg-neutral-600'>
                     {getCode.map((code) => (
-                      <SelectItem key={code} value={code} className="bg-neutral-600 ">
+                      <SelectItem key={code} value={code} className="bg-neutral-500 ">
                         <div className='flex items-center gap-2'>
                           <img src={getFlag(code)} alt={`${code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
-                          <span>{code}</span>
+                          <span className='text-neutral-600'>{code}</span>
                         </div>
                       </SelectItem>
                     ))}
