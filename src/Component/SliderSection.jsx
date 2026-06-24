@@ -44,7 +44,7 @@ export default function SliderSection({ baseCurrency }) {
             </li>
             <li className={`flex items-center justify-center text-[10px] md:text-[12px] tracking-[1px] font-semibold list-none 
               ${currency.percentageChange > 0 ? 'text-green-500' : 'text-red-500'}`}>
-              <span className='w-[12px] h-[12px] flex items-center justify-center px-[4px]' > {currency.percentageChange > 0 ? "\u25B2" : "\u25BC"}</span>
+              <span className='w-[12px] h-[12px] flex items-center gap-[2px] justify-center px-[4px]' > {currency.percentageChange > 0 ? "\u25B2" : "\u25BC"}</span>
               {currency.percentageChange}%
             </li>
           </div>
