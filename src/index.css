@@ -7,19 +7,7 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 
-* {
-  margin: 0;
-  padding: 0;
-  
-}
-@font-face {
-  font-family: 'jetbrains-mono';
-  src: url('./assets/fonts/jetbrains-mono/jetbrains-mono-variable.ttf') format('ttf');
-}
-body{
-  background-color: #171717;
-    font-family: 'jetbrains-mono', monospace;
-}
+
 
 @layer base {
   .theme {
@@ -93,12 +81,19 @@ body{
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
   }
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  
+}
+@font-face {
+  font-family: 'jetbrains-mono';
+  src: url('./assets/fonts/jetbrains-mono/jetbrains-mono-variable.ttf') format('ttf');
+}
+body{
+  background-color: #171717;
+    font-family: 'jetbrains-mono', monospace;
+}
   html {
     @apply font-sans;
   }
