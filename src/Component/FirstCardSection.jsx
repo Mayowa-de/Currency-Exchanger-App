@@ -48,14 +48,14 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCod
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>RECEIVE</h2>
             <div className='flex justify-between gap-[auto]'>
               <input type="text" className='w-[123px]  h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem]  rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]' />
-                <Select value={baseCurrency} onValueChange={setBaseCurrency} id="receive-currency" className=' relative appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px] '>
+                <Select value={baseCurrency} onValueChange={setBaseCurrency} id="receive-currency" className=' relative appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px] w-full'>
                   <SelectTrigger className='flex relative items-center gap-2 justify-between  '>
                     <div className='flex items-center gap-2 '>
                       {selectedFlag && <img src={selectedFlag} alt={`${baseCurrency} flag`} className='w-[20px] h-[14px] object-cover rounded-sm' />}
                       <SelectValue placeholder={baseCurrency} />
                     </div>
                   </SelectTrigger>
-                  <SelectContent className='w-[376px] px-[4px] top-24 absolute bg-neutral-600'>
+                  <SelectContent className=' px-[4px] top-24 absolute bg-neutral-600'>
                     {getCode.map((code) => (
                       <SelectItem key={code} value={code} className="bg-neutral-500 ">
                         <div className='flex items-center gap-2'>
