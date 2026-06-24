@@ -6,12 +6,6 @@ import {Select, SelectContent, SelectTrigger, SelectValue, SelectItem} from "@/c
 import { getFlag } from './crrencyFlags'
 import StarFillIcon from '../assets/images/icon-star-filled.svg'
 
-const CURRENCIES= [
-  { code: "USD", label: "US Dollar" },
-  { code: "EUR", label: "Euro" },
-  { code: "GBP", label: "British Pound" },
-]
-
 export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCode }) {
   const [isStared, setisStared] = useState(false)
   const selectedFlag = getFlag(baseCurrency)
