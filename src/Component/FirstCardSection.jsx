@@ -12,7 +12,7 @@ const CURRENCIES= [
   { code: "GBP", label: "British Pound" },
 ]
 
-export default function FirstCardSection({ baseCurrency, setBaseCurrency }) {
+export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCode, setgetCode }) {
   const [isStared, setisStared] = useState(false)
   const selectedFlag = getFlag(baseCurrency)
 
@@ -35,7 +35,7 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency }) {
                     </div>
                   </SelectTrigger>
                   <SelectContent className="absolute top-24 bg-neutral-600 px-[4px]">
-                    {CURRENCIES.map((currency) => (
+                    {getCode.map((currency) => (
                       <SelectItem key={currency.code} value={currency.code}>
                         <div className='flex items-center gap-2'>
                           <img src={getFlag(currency.code)} alt={`${currency.code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
@@ -65,7 +65,7 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency }) {
                     </div>
                   </SelectTrigger>
                   <SelectContent className='w-[376px] px-[4px] top-24 absolute bg-neutral-600'>
-                    {CURRENCIES.map((currency) => (
+                    {getCode.map((currency) => (
                       <SelectItem key={currency.code} value={currency.code} className="bg-neutral-600 ">
                         <div className='flex items-center gap-2'>
                           <img src={getFlag(currency.code)} alt={`${currency.code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
