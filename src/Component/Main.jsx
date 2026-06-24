@@ -8,7 +8,7 @@ const [getCode, setgetCode] = useState([])
   useEffect(() =>{
   async function fetchCodeData() {
       try {
-        const apiUrl = 'https://currency-exchanger-app-backend.onrender.com/api?code' || 'http://localhost:3000/api'
+        const apiUrl = 'https://currency-exchanger-app-backend.onrender.com/api' || 'http://localhost:3000/api'
         const response = await fetch(apiUrl)
         const data = await response.json()
 
