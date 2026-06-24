@@ -12,7 +12,7 @@ const CURRENCIES= [
   { code: "GBP", label: "British Pound" },
 ]
 
-export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCode, setgetCode }) {
+export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCode }) {
   const [isStared, setisStared] = useState(false)
   const selectedFlag = getFlag(baseCurrency)
 
