@@ -12,12 +12,8 @@ const [getCode, setgetCode] = useState([])
         const response = await fetch(apiUrl)
         const data = await response.json()
 
-        setgetCode(
-          data.currencies?.map(currency => ({
-            ...currency,
-            code: data.code
-          })) || []
-        )
+        const currencyCode= data.currencies.map((currency)=>currency.code)
+        setgetCode(currencyCode)
       } catch (error) {
         console.log("Error can't fetch api", error)
       }
