@@ -1,6 +1,6 @@
-const flags = import.meta.glob('../assets/images/flags/*.webp', { eager: true });
+const flags = import.meta.glob('../../assets/images/flags/*.webp', { eager: true });
 
 export const getFlag = (code) =>{
-   const key = `../../assets/flags/${code.toLowerCase()}.webp`
+   const key = `../../assets/images/flags/${code.toLowerCase()}.webp`
    return flags[key]?.default;
 }
