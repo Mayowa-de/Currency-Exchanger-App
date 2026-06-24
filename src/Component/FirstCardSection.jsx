@@ -1,16 +1,21 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Vertical_Exchange from '../assets/images/icon-exchange-vertical.svg'
 import Exchange from '../assets/images/icon-exchange.svg'
 import StarIcon from '../assets/images/icon-star.svg'
-import {Select,SelectValue, Label, Button, ListBox, ListBoxItem, Popover} from 'react-aria-components'
+import {Select, SelectContent, SelectTrigger, SelectValue, SelectItem} from "@/component/ui/select"
+import { getFlag } from './crrencyFlags'
 import StarFillIcon from '../assets/images/icon-star-filled.svg'
 
 const CURRENCIES= [
-  {code: "USD", label: ""}
+  { code: "USD", label: "US Dollar" },
+  { code: "EUR", label: "Euro" },
+  { code: "GBP", label: "British Pound" },
 ]
-export default function FirstCardSection() {
-  const [selectedText, isselectedText] =useState('USD')
+
+export default function FirstCardSection({ baseCurrency, setBaseCurrency }) {
   const [isStared, setisStared] = useState(false)
+  const selectedFlag = getFlag(baseCurrency)
+
   return (
     <section className='flex flex-col w-full md:w-[1036px] md:h-[931px]  gap-[16px]'>
       <h1 className='text-[1.25rem] text-[jetbrains-mono, regular] tracking-[-0.5px] leading-[120%] text-[#FFFFFF]'>CHECK THE RATE</h1>
@@ -21,15 +26,24 @@ export default function FirstCardSection() {
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND</h2>
             <div className='flex justify-between gap-[auto]'>
               <input type="text" className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
-              <div className='w-[96px] h-[40px] gap[8px] bg-[#2E2E2E] border-[1px] border-[#3D3D3D] p-[10px] px-[10px] rounded-[8px] '>
-                <Select  id="" className='bg-transparent appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px]'>
-                  <Button><span>{selectedText}</span> </Button>
-                  <Popover>
-                  <ListBox value="EUR">
-                    <ListBoxItem>EUR</ListBoxItem>
-                  <ListBoxItem value="USD">USD</ListBoxItem>
-                  </ListBox>
-                  </Popover>
+              <div className='w-[96px] h-[40px] bg-[#2E2E2E] border-[1px] border-[#3D3D3D] p-[2px] rounded-[8px]'>
+                <Select value={baseCurrency} onValueChange={setBaseCurrency} id="send-currency" className='bg-transparent appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px] w-full'>
+                  <SelectTrigger className='flex items-center gap-2 justify-between w-full'>
+                    <div className='flex items-center gap-2'>
+                      {selectedFlag && <img src={selectedFlag} alt={`${baseCurrency} flag`} className='w-[20px] h-[14px] object-cover rounded-sm' />}
+                      <SelectValue placeholder={baseCurrency} />
+                    </div>
+                  </SelectTrigger>
+                  <SelectContent>
+                    {CURRENCIES.map((currency) => (
+                      <SelectItem key={currency.code} value={currency.code}>
+                        <div className='flex items-center gap-2'>
+                          <img src={getFlag(currency.code)} alt={`${currency.code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
+                          <span>{currency.code}</span>
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
                 </Select>
               </div>
             </div>
@@ -42,15 +56,24 @@ export default function FirstCardSection() {
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>RECEIVE</h2>
             <div className='flex justify-between gap-[auto]'>
               <input type="text" className='w-[123px]  h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem]  rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]' />
-              <div className='w-[96px] h-[40px] gap[8px] bg-[#2E2E2E] border-[1px] border-[#3D3D3D] p-[10px] px-[10px] rounded-[8px] '>
-                <Select  id="" className='bg-transparent appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px]'>
-                  <Button><span>{selectedText}</span> </Button>
-                  <Popover>
-                  <ListBox value="EUR">
-                    <ListBoxItem>EUR</ListBoxItem>
-                  <ListBoxItem value="USD">USD</ListBoxItem>
-                  </ListBox>
-                  </Popover>
+              <div className='w-[96px] h-[40px] bg-[#2E2E2E] border-[1px] border-[#3D3D3D] p-[2px] rounded-[8px]'>
+                <Select value={baseCurrency} onValueChange={setBaseCurrency} id="receive-currency" className='bg-neutral-600 w-[376px] h-[466px] appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px] '>
+                  <SelectTrigger className='flex items-center gap-2 justify-between w-[376px] h-[466px] bg-neutral-600'>
+                    <div className='flex items-center gap-2'>
+                      {selectedFlag && <img src={selectedFlag} alt={`${baseCurrency} flag`} className='w-[20px] h-[14px] object-cover rounded-sm' />}
+                      <SelectValue placeholder={baseCurrency} />
+                    </div>
+                  </SelectTrigger>
+                  <SelectContent className='w-[376px] h-[466px]'>
+                    {CURRENCIES.map((currency) => (
+                      <SelectItem key={currency.code} value={currency.code} className="bg-neutral-600 w-[376px] h-[466px]">
+                        <div className='flex items-center gap-2'>
+                          <img src={getFlag(currency.code)} alt={`${currency.code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
+                          <span>{currency.code}</span>
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
                 </Select>
               </div>
             </div>
@@ -62,13 +85,14 @@ export default function FirstCardSection() {
           <div></div>
 
           <div className='flex gap-2'>
-
-            <button className='bg-[#CEF739] flex  focus:border-neutral-900 focus:border-[1px] focus:ring-[#CEF739] focus:ring-1 focus:outline-none  leading-[1.3] tracking-[0.5px] rounded-[8px] px-[12px] p-[8px] items-center gap-[8px]' onClick={()=>setisStared(!isStared)}>{isStared ? <img src={StarFillIcon} width={'16px'} height={'16px'} alt='star-filled-icon' className="shadow-md"/> : <img src={StarIcon} width={'16px'} height={'16px'} alt='star-icon' className='text-neutral-900  overflow-hidden'/>}Favorited</button>
+            <button className='bg-[#CEF739] flex  focus:border-neutral-900 focus:border-[1px] focus:ring-[#CEF739] focus:ring-1 focus:outline-none  leading-[1.3] tracking-[0.5px] rounded-[8px] px-[12px] p-[8px] items-center gap-[8px]' onClick={()=>setisStared(!isStared)}>
+              {isStared ? <img src={StarFillIcon} width={'16px'} height={'16px'} alt='star-filled-icon' className="shadow-md"/> : <img src={StarIcon} width={'16px'} height={'16px'} alt='star-icon' className='text-neutral-900  overflow-hidden'/>}
+              Favorited
+            </button>
             <button className='focus:ring-[#CEF739] focus:ring-2 focus:outline-none  leading-[1.3] tracking-[0.5px] text-neutral-50 text-[12px] bg-neutral-900 rounded-[8px] px-[12px] p-[8px]'>LOG CONVERSION</button>
           </div>
         </div>
       </div>
-
     </section>
   )
 }

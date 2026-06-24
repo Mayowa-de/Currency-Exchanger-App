@@ -4,14 +4,15 @@ import Main from "./Component/Main"
 import "./index.css"
 
 function App() {
-  
+  const [baseCurrency, setBaseCurrency] = useState("USD")
+
   return (
     <div className=" w-full flex flex-col items-center ">
       <Header />
-      <SliderSection />
-      <Main/>
-      </div>  
-      )
+      <SliderSection baseCurrency={baseCurrency} />
+      <Main baseCurrency={baseCurrency} setBaseCurrency={setBaseCurrency} />
+    </div>
+  )
 }
 
 export default App
