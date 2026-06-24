@@ -35,11 +35,11 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCod
                     </div>
                   </SelectTrigger>
                   <SelectContent className="absolute top-24 bg-neutral-600 px-[4px]">
-                    {getCode.map((currency) => (
+                    {getCode.map((code) => (
                       <SelectItem key={code} value={code}>
                         <div className='flex items-center gap-2'>
-                          <img src={getFlag(currency.code)} alt={`${currency.code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
-                          <span>{currency.code}</span>
+                          <img src={getFlag(code)} alt={`${code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
+                          <span>{code}</span>
                         </div>
                       </SelectItem>
                     ))}
@@ -65,11 +65,11 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCod
                     </div>
                   </SelectTrigger>
                   <SelectContent className='w-[376px] px-[4px] top-24 absolute bg-neutral-600'>
-                    {getCode.map((currency) => (
+                    {getCode.map((code) => (
                       <SelectItem key={code} value={code} className="bg-neutral-600 ">
                         <div className='flex items-center gap-2'>
-                          <img src={getFlag(currency.code)} alt={`${currency.code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
-                          <span>{currency.code}</span>
+                          <img src={getFlag(code)} alt={`${code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
+                          <span>{code}</span>
                         </div>
                       </SelectItem>
                     ))}
