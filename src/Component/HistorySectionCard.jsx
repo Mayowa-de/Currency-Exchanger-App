@@ -25,7 +25,7 @@ export default function HistorySectionCard() {
         </div>
       </div>
 
-      <ul className='flex items-center justify-center gap-[28px] text-neutral-200 w-[286px] h-[42px] rounded-[8px] px-[2px] p-[2px] bg-[#202022]'>
+      <ul className='flex items-center justify-center gap-[28px] text-neutral-200 w-[286px] h-[42px] rounded-[8px] md:px-[4px] px-[2px] p-[2px] bg-[#202022]'>
         {listDate.map(tabDate =>(
          <li key={tabDate} className={`flex ${isActiveDate === tabDate ? 'flex items-center justify-center bg-neutral-500 w-[47px] h-[38px] rounded-[8px]' : 'bg-transparent '}`} role='button' onClick={()=>setisActiveDate(tabDate)}>{tabDate}</li>
         ))}
