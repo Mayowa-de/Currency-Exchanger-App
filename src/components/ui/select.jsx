@@ -55,6 +55,7 @@ function SelectContent({
   className,
   children,
   position = "popper",
+  avoidCollisions={false}
   align = "center",
   ...props
 }) {
