@@ -27,7 +27,7 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCod
                       <SelectValue placeholder={baseCurrency} />
                     </div>
                   </SelectTrigger>
-                  <SelectContent position="popper" sideOffset={4} side="bottom" className=" bg-neutral-500 px-[4px]">
+                  <SelectContent position="popper" avoidCollisions={false} sideOffset={4} side="bottom" className=" bg-neutral-500 px-[4px]">
                     {getCode.map((code) => (
                       <SelectItem key={code} value={code}>
                         <div className='flex items-center gap-2'>
@@ -55,7 +55,7 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCod
                       <SelectValue placeholder={baseCurrency} />
                     </div>
                   </SelectTrigger>
-                  <SelectContent side="bottom" className=' px-[4px]  bg-neutral-600'>
+                  <SelectContent side="bottom" position="popper" avoidCollisions={false} className=' px-[4px]  bg-neutral-600'>
                     {getCode.map((code) => (
                       <SelectItem key={code} value={code} className="bg-neutral-500 ">
                         <div className='flex items-center gap-2'>
