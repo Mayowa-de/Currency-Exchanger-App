@@ -20,14 +20,14 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCod
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND</h2>
             <div className='flex justify-between gap-[auto]'>
               <input type="text" className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
-                <Select value={baseCurrency} onValueChange={setBaseCurrency} id="send-currency" className='bg-transparent appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px] w-full'>
+                <Select value={baseCurrency} onValueChange={setBaseCurrency} id="send-currency" className='bg-transparent appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px]'>
                   <SelectTrigger className='flex items-center gap-2 justify-between w-full'>
                     <div className='flex items-center gap-2'>
                       {selectedFlag && <img src={selectedFlag} alt={`${baseCurrency} flag`} className='w-[20px] h-[14px] object-cover rounded-sm' />}
                       <SelectValue placeholder={baseCurrency} />
                     </div>
                   </SelectTrigger>
-                  <SelectContent position="popper" sideOffset="" side="bottom" className=" bg-neutral-500 px-[4px]">
+                  <SelectContent position="popper" sideOffset={4} side="bottom" className=" bg-neutral-500 px-[4px]">
                     {getCode.map((code) => (
                       <SelectItem key={code} value={code}>
                         <div className='flex items-center gap-2'>
@@ -48,7 +48,7 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCod
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>RECEIVE</h2>
             <div className='flex justify-between gap-[auto]'>
               <input type="text" className='w-[123px]  h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem]  rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]' />
-                <Select value={baseCurrency} onValueChange={setBaseCurrency} id="receive-currency" className=' relative appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px] w-full'>
+                <Select value={baseCurrency} onValueChange={setBaseCurrency} id="receive-currency" className=' appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px] '>
                   <SelectTrigger className='flex relative items-center gap-2 justify-between  '>
                     <div className='flex items-center gap-2 '>
                       {selectedFlag && <img src={selectedFlag} alt={`${baseCurrency} flag`} className='w-[20px] h-[14px] object-cover rounded-sm' />}
