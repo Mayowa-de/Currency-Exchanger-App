@@ -6,15 +6,7 @@ import "./index.css"
 
 
 function App() {
-  const [baseCurrency, setBaseCurrency] = useState("USD")
-<<<<<<< HEAD
-  useEffect(()=>{
-    const response = await fetch('https://currency-exchanger-app-backend.onrender.com/api?code')
-    const data = response.json()
-  })
-=======
-    
->>>>>>> e50b28441c88189ef486c379ad7d6c4081fd0d07
+  const [baseCurrency, setBaseCurrency] = useState("USD");
 
   return (
     <div className=" w-full flex flex-col items-center ">
