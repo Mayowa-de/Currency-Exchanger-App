@@ -41,7 +41,7 @@ import za from '../assets/images/flags/za.webp'
 const flagMap = {
   ae, ar, au, bd, bg, bh, br, ca, ch,
   cl, cn, co, cy, cz, dk, eg, eu, gb,
-  hk, hu, id, il, jp, kr, mx, my, ng,
+  hk, hu, id, jp, kr, mx, my, ng,
   no, nz, ph, pl, ro, se, sg, th, tr,
   us, za,
   in: in_,
