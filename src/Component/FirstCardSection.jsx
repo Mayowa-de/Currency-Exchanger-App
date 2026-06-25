@@ -29,18 +29,14 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCod
                   </SelectTrigger>
                   <SelectContent  className=" bg-neutral-500 px-[4px]">
                     <div className="text-white text-[10px] p-2">
-  {getCode.slice(0, 3).map(code => (
-    <div key={code} className="flex items-center gap-2 mb-1">
-      <span>{code}:</span>
-      <img 
-        src={getFlag(code)} 
-        className="w-[20px] h-[14px]"
-        onError={(e) => e.target.style.border = '1px solid red'}
-      />
-      <span className="text-[8px] break-all">{getFlag(code)}</span>
-    </div>
-  ))}
-</div>
+                     {getCode.map((code) => (
+                      <SelectItem key={code} value={code} className="bg-neutral-500 ">
+                        <div className='flex items-center gap-2'>
+                          <img src={getFlag(code)} alt={`${code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
+                          <span className='text-neutral-600'>{code}</span>
+                        </div>
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
             </div>
