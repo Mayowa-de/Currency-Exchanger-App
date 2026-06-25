@@ -80,6 +80,11 @@
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
   }
+
+  html {
+    @apply font-sans;
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -91,9 +96,5 @@
 }
 body{
   background-color: #171717;
-    font-family: 'jetbrains-mono', monospace;
-}
-  html {
-    @apply font-sans;
-  }
-}
+  font-family: 'jetbrains-mono', monospace;
+ }
