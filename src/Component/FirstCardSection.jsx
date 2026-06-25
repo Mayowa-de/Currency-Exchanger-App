@@ -6,13 +6,7 @@ import {Select, SelectContent, SelectTrigger, SelectValue, SelectItem} from "@/c
 import { getFlag } from './crrencyFlags'
 import StarFillIcon from '../assets/images/icon-star-filled.svg'
 
-const CURRENCIES= [
-  { code: "USD", label: "US Dollar" },
-  { code: "EUR", label: "Euro" },
-  { code: "GBP", label: "British Pound" },
-]
-
-export default function FirstCardSection({ baseCurrency, setBaseCurrency }) {
+export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCode }) {
   const [isStared, setisStared] = useState(false)
   const selectedFlag = getFlag(baseCurrency)
 
@@ -26,7 +20,6 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency }) {
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND</h2>
             <div className='flex justify-between gap-[auto]'>
               <input type="text" className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
-              <div className='w-[96px] h-[40px] bg-[#2E2E2E] border-[1px] border-[#3D3D3D] p-[2px] rounded-[8px]'>
                 <Select value={baseCurrency} onValueChange={setBaseCurrency} id="send-currency" className='bg-transparent appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px] w-full'>
                   <SelectTrigger className='flex items-center gap-2 justify-between w-full'>
                     <div className='flex items-center gap-2'>
@@ -34,18 +27,17 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency }) {
                       <SelectValue placeholder={baseCurrency} />
                     </div>
                   </SelectTrigger>
-                  <SelectContent className="absolute top-24 bg-neutral-600 px-[4px]">
-                    {CURRENCIES.map((currency) => (
-                      <SelectItem key={currency.code} value={currency.code}>
+                  <SelectContent className="absolute top-24 bg-neutral-500 px-[4px]">
+                    {getCode.map((code) => (
+                      <SelectItem key={code} value={code}>
                         <div className='flex items-center gap-2'>
-                          <img src={getFlag(currency.code)} alt={`${currency.code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
-                          <span>{currency.code}</span>
+                          <img src={getFlag(code)} alt={`${code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
+                          <span className='text-neutral-600'>{code}</span>
                         </div>
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
-              </div>
             </div>
           </div>
           <button className='w-[48px] h-[48px] px-[10px] p-[10px] bg-[#2E2E2E] rounded-[8px] items-center flex justify-center focus:border-2 focus:border-[#CEF739]' role='button'>
@@ -56,20 +48,19 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency }) {
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>RECEIVE</h2>
             <div className='flex justify-between gap-[auto]'>
               <input type="text" className='w-[123px]  h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem]  rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]' />
-              <div className='  border-[1px] border-[#3D3D3D] p-[2px] rounded-[8px]'>
-                <Select value={baseCurrency} onValueChange={setBaseCurrency} id="receive-currency" className=' relative appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px] '>
+                <Select value={baseCurrency} onValueChange={setBaseCurrency} id="receive-currency" className=' relative appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px] w-full'>
                   <SelectTrigger className='flex relative items-center gap-2 justify-between  '>
                     <div className='flex items-center gap-2 '>
                       {selectedFlag && <img src={selectedFlag} alt={`${baseCurrency} flag`} className='w-[20px] h-[14px] object-cover rounded-sm' />}
                       <SelectValue placeholder={baseCurrency} />
                     </div>
                   </SelectTrigger>
-                  <SelectContent className='w-[376px] px-[4px] top-24 absolute bg-neutral-600'>
-                    {CURRENCIES.map((currency) => (
-                      <SelectItem key={currency.code} value={currency.code} className="bg-neutral-600 ">
+                  <SelectContent className=' px-[4px] top-24 absolute bg-neutral-600'>
+                    {getCode.map((code) => (
+                      <SelectItem key={code} value={code} className="bg-neutral-500 ">
                         <div className='flex items-center gap-2'>
-                          <img src={getFlag(currency.code)} alt={`${currency.code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
-                          <span>{currency.code}</span>
+                          <img src={getFlag(code)} alt={`${code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
+                          <span className='text-neutral-600'>{code}</span>
                         </div>
                       </SelectItem>
                     ))}
