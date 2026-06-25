@@ -21,7 +21,7 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCod
             <div className='flex justify-between gap-[auto]'>
               <input type="text" className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
                 <Select value={baseCurrency} onValueChange={setBaseCurrency} id="send-currency" className='bg-transparent appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px]'>
-                  <SelectTrigger className='flex items-center gap-2 justify-between w-full'>
+                  <SelectTrigger className='flex items-center gap-2 justify-between w-[120px]'>
                     <div className='flex items-center gap-2'>
                       {selectedFlag && <img src={selectedFlag} alt={`${baseCurrency} flag`} className='w-[20px] h-[14px] object-cover rounded-sm' />}
                       <SelectValue placeholder={baseCurrency} />
@@ -49,10 +49,10 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCod
             <div className='flex justify-between gap-[auto]'>
               <input type="text" className='w-[123px]  h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem]  rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]' />
                 <Select value={baseCurrency} onValueChange={setBaseCurrency} id="receive-currency" className=' appearance-none focus:outline-none text-white border-none text-[14px] tracking-[1px] '>
-                  <SelectTrigger className='flex relative items-center gap-2 justify-between  '>
+                  <SelectTrigger className='flex relative items-center gap-2 justify-between w-[120px] '>
                     <div className='flex items-center gap-2 '>
                       {selectedFlag && <img src={selectedFlag} alt={`${baseCurrency} flag`} className='w-[20px] h-[14px] object-cover rounded-sm' />}
-                      <SelectValue placeholder={baseCurrency} />
+                      <SelectValue placeholder={baseCurrency} className="text-white/20/>
                     </div>
                   </SelectTrigger>
                   <SelectContent side="bottom" position="popper" avoidCollisions={false} className=' px-[4px]  bg-neutral-600'>
