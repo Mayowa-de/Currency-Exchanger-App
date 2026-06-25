@@ -1,65 +1,142 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Vertical_Exchange from '../assets/images/icon-exchange-vertical.svg'
 import Exchange from '../assets/images/icon-exchange.svg'
 import StarIcon from '../assets/images/icon-star.svg'
-import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from "@/components/ui/select"
-import { getFlag } from './crrencyFlags'
 import StarFillIcon from '../assets/images/icon-star-filled.svg'
+import { getFlag } from './crrencyFlags'
+import { ChevronDown } from 'lucide-react'
 
-export default function FirstCardSection({ baseCurrency, setBaseCurrency, getCode }) {
-  const [isStared, setisStared] = useState(false)
-  const selectedFlag = getFlag(baseCurrency)
+function FirstcardSection({ value, onChange, options }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const dropdownRef = useRef(null)
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
   return (
-    <section className='flex flex-col w-full md:w-[1036px] md:h-[931px] gap-[16px]'>
+    <div ref={dropdownRef} className="relative w-[110px]">
+      {/* Trigger */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-2 w-full bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] py-[6px] text-white text-[14px]"
+      >
+        {getFlag(value) && (
+          <img src={getFlag(value)} alt={value} className="w-[20px] h-[14px] object-cover rounded-sm" />
+        )}
+        <span>{value}</span>
+        <ChevronDown
+          size={14}
+          className={`ml-auto transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+        />
+      </button>
+
+      {/* Dropdown */}
+      {isOpen && (
+        <ul className="absolute top-full left-0 mt-[4px] w-full max-h-[250px] overflow-y-auto z-50 bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px]">
+          {options.map((code) => (
+            <li
+              key={code}
+              onClick={() => {
+                onChange(code)
+                setIsOpen(false)
+              }}
+              className={`flex items-center gap-2 px-[8px] py-[6px] cursor-pointer text-white text-[14px] hover:bg-[#CEF739] hover:text-black
+                ${value === code ? 'bg-[#CEF739] text-black' : ''}`}
+            >
+              {getFlag(code) && (
+                <img src={getFlag(code)} alt={code} className="w-[18px] h-[12px] object-cover rounded-sm" />
+              )}
+              <span>{code}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
+
+// FirstCardSection
+export default function FirstCardSection({ baseCurrency, setBaseCurrency, targetCurrency, setTargetCurrency, getCode }) {
+  const [isStared, setisStared] = useState(false)
+
+  return (
+    <section className='flex flex-col w-full md:w-[1036px] gap-[16px]'>
       <h1 className='text-[1.25rem] tracking-[-0.5px] leading-[120%] text-[#FFFFFF]'>CHECK THE RATE</h1>
 
       <div className='flex flex-col bg-[#202022] px-[20px] p-[20px] rounded-[24px] gap-[24px]'>
         <div className='md:flex-row flex flex-col gap-[12px] md:gap-[8px] items-center justify-center'>
 
           {/* SEND */}
-          <div className='md:w-[450px] w-full md:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
+          <div className='md:w-[450px] w-full md:h-[118px] px-[20px] p-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND</h2>
-            <div className='flex justify-between'>
+            <div className='flex justify-between items-center mt-[8px]'>
               <input
                 type="text"
-                className='w-[123px] h-[40px] bg-transparent text-[#FFFF] px-[3px] text-[2rem] rounded-[8px] border-none outline-none focus:border-b-[2px] focus:border-[#CEF739]'
+                className='w-[123px] h-[40px] bg-transparent text-[#FFFFFF] px-[3px] text-[2rem] rounded-[8px] border-none outline-none focus:border-b-[2px] focus:border-[#CEF739]'
               />
-              <Select value={baseCurrency} onValueChange={setBaseCurrency}>
-                <SelectTrigger className='flex items-center gap-2 w-[120px]'>
-                  <div className='flex items-center gap-2'>
-                    {selectedFlag && (
-                      <img src={selectedFlag} alt={`${baseCurrency} flag`} className='w-[20px] h-[14px] object-cover rounded-sm' />
-                    )}
-                    <SelectValue placeholder={baseCurrency} />
-                  </div>
-                </SelectTrigger>
-                <SelectContent className="bg-neutral-700 px-[4px]">
-                  {getCode.map((code) => (
-                    <SelectItem key={code} value={code}>
-                      <div className='flex items-center gap-2'>
-                        {getFlag(code) && (
-                          <img src={getFlag(code)} alt={`${code} flag`} className='w-[18px] h-[12px] object-cover rounded-sm' />
-                        )}
-                        <span className='text-white'>{code}</span>
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <CurrencySelect
+                value={baseCurrency}
+                onChange={setBaseCurrency}
+                options={getCode}
+              />
             </div>
           </div>
 
           {/* SWAP BUTTON */}
-          <button className='w-[48px] h-[48px] px-[10px] p-[10px] bg-[#2E2E2E] rounded-[8px] items-center flex justify-center focus:border-2 focus:border-[#CEF739]'>
+          <button className='w-[48px] h-[48px] bg-[#2E2E2E] rounded-[8px] items-center flex justify-center focus:border-2 focus:border-[#CEF739]'>
             <img src={Vertical_Exchange} alt="exchange-icon-vertical" className='w-[20px] h-[20px] flex md:hidden' />
             <img src={Exchange} alt="exchange-icon" className='w-[20px] h-[20px] md:flex hidden' />
           </button>
 
           {/* RECEIVE */}
-          <div className='md:w-[450px] w-full md:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
+          <div className='md:w-[450px] w-full md:h-[118px] px-[20px] p-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>RECEIVE</h2>
-            <div className='flex justify-between'>
+            <div className='flex justify-between items-center mt-[8px]'>
+              <input
+                type="text"
+                className='w-[123px] h-[40px] bg-transparent text-[#CEF739] px-[5px] text-[2rem] rounded-[8px] border-none outline-none focus:ring-[2px] focus:ring-[#CEF739]'
+              />
+              <CurrencySelect
+                value={targetCurrency}
+                onChange={setTargetCurrency}
+                options={getCode}
+              />
+            </div>
+          </div>
+
+        </div>
+
+        <hr className='border-dashed border-[1px] border-neutral-900' />
+
+        <div className='flex justify-end items-center'>
+          <div className='flex gap-2'>
+            <button
+              className='bg-[#CEF739] flex focus:ring-[#CEF739] focus:ring-1 focus:outline-none leading-[1.3] tracking-[0.5px] rounded-[8px] px-[12px] p-[8px] items-center gap-[8px]'
+              onClick={() => setisStared(!isStared)}
+            >
+              {isStared
+                ? <img src={StarFillIcon} width='16px' height='16px' alt='star-filled-icon' />
+                : <img src={StarIcon} width='16px' height='16px' alt='star-icon' />
+              }
+              Favorited
+            </button>
+            <button className='focus:ring-[#CEF739] focus:ring-2 focus:outline-none leading-[1.3] tracking-[0.5px] text-neutral-50 text-[12px] bg-neutral-900 rounded-[8px] px-[12px] p-[8px]'>
+              LOG CONVERSION
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  )
+}            <div className='flex justify-between'>
               <input
                 type="text"
                 className='w-[123px] h-[40px] bg-transparent text-[#CEF739] px-[5px] text-[2rem] rounded-[8px] border-none outline-none focus:ring-[2px] focus:ring-[#CEF739]'
