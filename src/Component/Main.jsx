@@ -21,7 +21,7 @@ const [getCode, setgetCode] = useState([])
   }, [])
   return (
     <div className='flex flex-col items-center justify-center  md:p-[48px] md:w-[1100px] md:h-[607px] w-full p-[30px] px-[10px]  md:px-[20px]'>
-        <FirstCardSection baseCurrency={baseCurrency} setBaseCurrency={setBaseCurrency} getCode={getCode}  />
+        <FirstCardSection baseCurrency={baseCurrency} setBaseCurrency={setBaseCurrency} options={getCode}  />
         <HistorySection/>
     </div>
   )
