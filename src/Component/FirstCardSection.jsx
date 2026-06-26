@@ -21,9 +21,16 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, option
           
         }
     }
+    function handleClickedOutside(e) {
+        if(dropdownRef.current &&  !dropdownRef.current.contain(e.target)){
+          setIsSendOPen(false)
+          
+        }
+    }
    document.addEventListener("mousedown", handleClickOutside)
-    
+    document.addEventListener("mousedown", handleClickOutside)
    return ()=> document.removeEventListener("mousedown", handleClickOutside)
+    return ()=> document.removeEventListener("mousedown", handleClickedOutside)
   }, [e])
 
   return (
