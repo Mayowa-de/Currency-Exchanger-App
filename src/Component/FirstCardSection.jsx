@@ -23,7 +23,7 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, option
     }
     function handleClickedOutside(e) {
         if(dropdownRef.current &&  !dropdownRef.current.contain(e.target)){
-          setIsSendOPen(false)
+          setIsReceiveOPen(false)
           
         }
     }
