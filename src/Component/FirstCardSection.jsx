@@ -47,7 +47,7 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, option
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND</h2>
             <div className='flex justify-between gap-[auto]'>
               <input type="text" className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
-                           <div ref={dropdownRef} className='relative w-[110px]'>
+              <div ref={sendDropdownRef} className='relative w-[110px]'>
               <button onClick={()=>setIsSendOpen(!isSendOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px]'>
                 {getFlag(baseCurrency) && (
                   <img src={getFlag(baseCurrency)} alt={baseCurrency} className='w-[15px] h-[15px] border-none rounded-full'/>
@@ -84,7 +84,7 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, option
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>RECEIVE</h2>
             <div className='flex justify-between gap-[auto]'>
               <input type="text" className='w-[123px]  h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem]  rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]' />
-            <div ref={dropdownRef} className='relative w-[110px]'>
+            <div ref={receiveDropdownRef} className='relative w-[110px]'>
               <button onClick={()=>setIsReceiveOpen(!isReceiveOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px]'>
                 {getFlag(baseCurrency) && (
                   <img src={getFlag(baseCurrency)} alt={baseCurrency} className='w-[15px] h-[15px] border-none rounded-full'/>
