@@ -12,26 +12,30 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, option
   const selectedFlag = getFlag(baseCurrency)
   const [isSendOpen, setIsSendOpen] = useState(false)
   const [isReceiveOpen, setIsReceiveOpen] = useState(false)
-  const dropdownRef = useRef(null);
+  const sendDropdownRef = useRef(null);
+  const receiveDropdownRef = useRef(null);
 
-  useEffect(()=>{
-    function handleClickOutside(e) {
-        if(dropdownRef.current &&  !dropdownRef.current.contain(e.target)){
-          setIsSendOPen(false)
-          
-        }
+  useEffect(() => {
+  function handleClickOutsideSend(e) {
+    if (sendDropdownRef.current && !sendDropdownRef.current.contains(e.target)) {
+      setIsSendOpen(false)
     }
-    function handleClickedOutside(e) {
-        if(dropdownRef.current &&  !dropdownRef.current.contain(e.target)){
-          setIsReceiveOPen(false)
-          
-        }
+  }
+
+  function handleClickOutsideReceive(e) {
+    if (receiveDropdownRef.current && !receiveDropdownRef.current.contains(e.target)) {
+      setIsReceiveOpen(false)
     }
-   document.addEventListener("mousedown", handleClickOutside)
-    document.addEventListener("mousedown", handleClickOutside)
-   return ()=> document.removeEventListener("mousedown", handleClickOutside)
-    return ()=> document.removeEventListener("mousedown", handleClickedOutside)
-  }, [])
+  }
+
+  document.addEventListener("mousedown", handleClickOutsideSend)
+  document.addEventListener("mousedown", handleClickOutsideReceive)
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutsideSend)
+    document.removeEventListener("mousedown", handleClickOutsideReceive)
+  }
+}, [])
 
   return (
     <section className='flex flex-col w-full md:w-[1036px] md:h-[931px]  gap-[16px]'>
