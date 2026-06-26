@@ -22,7 +22,7 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, option
         }
     }
    document.addEventListener("mousedown", handleClickOutside)
-    document.addEventListener("mousedown", handleClickedOutside)
+    
    return ()=> document.removeEventListener("mousedown", handleClickOutside)
   }, [e])
 
