@@ -6,7 +6,7 @@ import "./index.css"
 
 
 function App() {
-  const [baseCurrency, setBaseCurrency] = useState("USD");
+  const [baseCurrency, setBaseCurrency] = useState("USD")
 
   return (
     <div className=" w-full flex flex-col items-center ">
