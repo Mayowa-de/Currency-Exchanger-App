@@ -31,7 +31,7 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, option
     document.addEventListener("mousedown", handleClickOutside)
    return ()=> document.removeEventListener("mousedown", handleClickOutside)
     return ()=> document.removeEventListener("mousedown", handleClickedOutside)
-  }, [e])
+  }, [])
 
   return (
     <section className='flex flex-col w-full md:w-[1036px] md:h-[931px]  gap-[16px]'>
