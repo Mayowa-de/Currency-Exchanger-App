@@ -2,16 +2,14 @@ import React, { useState, useEffect, useRef} from 'react'
 import Vertical_Exchange from '../assets/images/icon-exchange-vertical.svg'
 import Exchange from '../assets/images/icon-exchange.svg'
 import StarIcon from '../assets/images/icon-star.svg'
-import {Select, SelectContent, SelectTrigger, SelectValue, SelectItem} from "@/components/ui/select"
 import { getFlag } from './crrencyFlags'
 import {ChevronDown} from 'lucide-react'
 import StarFillIcon from '../assets/images/icon-star-filled.svg'
 
 export default function FirstCardSection({ baseCurrency, setBaseCurrency, options }) {
-  const [isStared, setisStared] = useState(false)
-  const selectedFlag = getFlag(baseCurrency)
-  const [isSendOpen, setIsSendOpen] = useState(false)
-  const [isReceiveOpen, setIsReceiveOpen] = useState(false)
+  const [isStared, setisStared] = useState(false);
+  const [isSendOpen, setIsSendOpen] = useState(false);
+  const [isReceiveOpen, setIsReceiveOpen] = useState(false);
   const sendDropdownRef = useRef(null);
   const receiveDropdownRef = useRef(null);
 
