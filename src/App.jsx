@@ -12,7 +12,7 @@ function App() {
   return (
     <div className=" w-full flex flex-col items-center ">
       <Header />
-      <SliderSection baseCurrency={baseCurrency} />
+      <SliderSection baseCurrency={baseSendCurrency} />
       <Main baseSendCurrency={baseSendCurrency} baseReceiveCurrency={baseReceiveCurrency} setBaseReceiveCurrency={setBaseReceiveCurrency} setBaseSendCurrency={setBaseSendCurrency} />
     </div>
   )
