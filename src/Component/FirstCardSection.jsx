@@ -6,7 +6,7 @@ import { getFlag } from './crrencyFlags'
 import {ChevronDown} from 'lucide-react'
 import StarFillIcon from '../assets/images/icon-star-filled.svg'
 
-export default function FirstCardSection({ baseCurrency, setBaseCurrency, options }) {
+export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency, setBaseReceiveCurrency, setBaseSendCurrency, options }) {
   const [isStared, setisStared] = useState(false);
   const [isSendOpen, setIsSendOpen] = useState(false);
   const [isReceiveOpen, setIsReceiveOpen] = useState(false);
@@ -47,17 +47,17 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, option
               <input type="text" className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
               <div ref={sendDropdownRef} className='relative w-[110px]'>
               <button onClick={()=>setIsSendOpen(!isSendOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px]'>
-                {getFlag(baseCurrency) && (
-                  <img src={getFlag(baseCurrency)} alt={baseCurrency} className='w-[15px] h-[15px] border-none rounded-full'/>
+                {getFlag(baseSendCurrency) && (
+                  <img src={getFlag(baseSendCurrency)} alt={baseSendCurrency} className='w-[15px] h-[15px] border-none rounded-full'/>
                 )}
-                <span>{baseCurrency}</span>
+                <span>{baseSendCurrency}</span>
                 <ChevronDown size={14} className={`ml-auto transition-transform duration-200 ${isSendOpen ? 'rotate-180' : 'rotate-0'}`}/>
               </button>
               {isSendOpen && (
                 <ul className='absolute top-full left-0 mt-[4px] px-[8px] md:w-[250px] w-full max-h-[250px]  overflow-y-auto  z-50 bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px]'>
                   {options.map((code)=>(
                     <li key={code} onClick={()=>{
-                      onClick={()=>{setBaseCurrency(code)
+                      onClick={()=>{setBaseSendCurrency(code)
                       setIsSendOpen(false)
                         }}
                     }}
@@ -84,17 +84,17 @@ export default function FirstCardSection({ baseCurrency, setBaseCurrency, option
               <input type="text" className='w-[123px]  h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem]  rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]' />
             <div ref={receiveDropdownRef} className='relative w-[110px]'>
               <button onClick={()=>setIsReceiveOpen(!isReceiveOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px]'>
-                {getFlag(baseCurrency) && (
-                  <img src={getFlag(baseCurrency)} alt={baseCurrency} className='w-[15px] h-[15px] border-none rounded-full'/>
+                {getFlag(baseReceiveCurrency) && (
+                  <img src={getFlag(baseReveiveCurrency)} alt={baseReceiveCurrency} className='w-[15px] h-[15px] border-none rounded-full'/>
                 )}
-                <span>{baseCurrency}</span>
+                <span>{baseReceiveCurrency}</span>
                 <ChevronDown size={14} className={`ml-auto transition-transform duration-200 ${isReceiveOpen ? 'rotate-180' : 'rotate-0'}`}/>
               </button>
               {isReceiveOpen && (
                 <ul className='absolute top-full left-0 mt-[4px] px-[8px] md:w-[250px] w-full max-h-[250px]  overflow-y-auto  z-50 bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px]'>
                   {options.map((code)=>(
                     <li key={code} onClick={()=>{
-                      onClick={()=>{setBaseCurrency(code)
+                      onClick={()=>{setBaseReceiveCurrency(code)
                       setIsReceiveOpen(false)
                         }}
                     }}
