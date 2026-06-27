@@ -56,10 +56,8 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
               {isSendOpen && (
                 <ul className='absolute top-full left-0 mt-[4px] px-[8px] md:w-[250px] w-full max-h-[250px]  overflow-y-auto  z-50 bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px]'>
                   {options.map((code)=>(
-                    <li key={code} onClick={()=>{
-                      onClick={()=>{setBaseSendCurrency(code)
+                    <li key={code} onClick={()=>{setBaseSendCurrency(code)
                       setIsSendOpen(false)
-                        }}
                     }}
                     className={`flex items-center gap-2 px-[8px] py-[6px] cursor-pointer text-white text-[14px] hover:bg-[#CEF739] hover:text-black ${baseSendCurrency === code ? 'bg-[#CEF739] text-black' : ''}`}
                     >
