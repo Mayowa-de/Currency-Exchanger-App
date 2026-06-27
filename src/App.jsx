@@ -6,13 +6,14 @@ import "./index.css"
 
 
 function App() {
-  const [baseCurrency, setBaseCurrency] = useState("USD")
+  const [baseSendCurrency, setBaseSendCurrency] = useState("USD")
+  const [baseReceiveCurrency, setBaseReceiveCurrency] = useState("EUR")
 
   return (
     <div className=" w-full flex flex-col items-center ">
       <Header />
       <SliderSection baseCurrency={baseCurrency} />
-      <Main baseCurrency={baseCurrency} setBaseCurrency={setBaseCurrency} />
+      <Main baseSendCurrency={baseSendCurrency} baseReceiveCurrency={baseReceiveCurrency} setBaseReceiveCurrency={setBaseReceiveCurrency} setBaseSendCurrency={setBaseSendCurrency} />
     </div>
   )
 }
