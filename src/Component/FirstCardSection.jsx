@@ -61,7 +61,7 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
                       setIsSendOpen(false)
                         }}
                     }}
-                    className={`flex items-center gap-2 px-[8px] py-[6px] cursor-pointer text-white text-[14px] hover:bg-[#CEF739] hover:text-black ${baseCurrency === code ? 'bg-[#CEF739] text-black' : ''}`}
+                    className={`flex items-center gap-2 px-[8px] py-[6px] cursor-pointer text-white text-[14px] hover:bg-[#CEF739] hover:text-black ${baseSendCurrency === code ? 'bg-[#CEF739] text-black' : ''}`}
                     >
                       {getFlag(code) && (
                         <img src={getFlag(code)} alt={code} className='w-[18px] h-[12px] object-cover rounded-sm'/>
@@ -85,7 +85,7 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
             <div ref={receiveDropdownRef} className='relative w-[110px]'>
               <button onClick={()=>setIsReceiveOpen(!isReceiveOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px]'>
                 {getFlag(baseReceiveCurrency) && (
-                  <img src={getFlag(baseReveiveCurrency)} alt={baseReceiveCurrency} className='w-[15px] h-[15px] border-none rounded-full'/>
+                  <img src={getFlag(baseReceiveCurrency)} alt={baseReceiveCurrency} className='w-[15px] h-[15px] border-none rounded-full'/>
                 )}
                 <span>{baseReceiveCurrency}</span>
                 <ChevronDown size={14} className={`ml-auto transition-transform duration-200 ${isReceiveOpen ? 'rotate-180' : 'rotate-0'}`}/>
@@ -93,12 +93,10 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
               {isReceiveOpen && (
                 <ul className='absolute top-full left-0 mt-[4px] px-[8px] md:w-[250px] w-full max-h-[250px]  overflow-y-auto  z-50 bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px]'>
                   {options.map((code)=>(
-                    <li key={code} onClick={()=>{
-                      onClick={()=>{setBaseReceiveCurrency(code)
+                    <li key={code} onClick={()=>{setBaseReceiveCurrency(code)
                       setIsReceiveOpen(false)
                         }}
-                    }}
-                    className={`flex items-center gap-2 px-[8px] py-[6px] cursor-pointer text-white text-[14px] hover:bg-[#CEF739] hover:text-black ${baseCurrency === code ? 'bg-[#CEF739] text-black' : ''}`}
+                    className={`flex items-center gap-2 px-[8px] py-[6px] cursor-pointer text-white text-[14px] hover:bg-[#CEF739] hover:text-black ${baseReceiveCurrency === code ? 'bg-[#CEF739] text-black' : ''}`}
                     >
                       {getFlag(code) && (
                         <img src={getFlag(code)} alt={code} className='w-[18px] h-[12px] object-cover rounded-sm'/>
