@@ -62,7 +62,7 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
         `https://api.frankfurter.app/latest?amount=${sendAmount}&from=${baseSendCurrency}&to=${baseReceiveCurrency}`
       )
       const data  = await response.json()
-      const res= data.rates[baseReceiveCurrency]
+      const result = data.rates[baseReceiveCurrency]
       if (lastEdited === 'send') {
         setReceiveAmount(result.toFixed(2))
       } else {
