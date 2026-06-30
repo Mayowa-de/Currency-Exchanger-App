@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 
 export default function ListHistoryButton() {
     const [isActive, setisActive] = useState("HISTORY")
+    const [isOpenList, setIsOpenList] =useState(false)
 
     const ListTitle = ['HISTORY', 'COMPARE', 'FAVORITES', 'LOG']
     
@@ -17,13 +18,15 @@ export default function ListHistoryButton() {
       </ul>
       <hr className='border-neutral-600 md:flex hidden'/>
 
-       <select className='flex w-full h-[40px] md:hidden rounded px-[12px] text-white bg-neutral-700 border-1 border-neutral-400' >
-        {ListTitle.map((tab) => (
+       <ul onClick={()=>setIsOpenList(!isOpenList)} className='flex w-full h-[40px]  md:hidden list-style-none rounded px-[12px] text-white bg-neutral-900 border-1 border-neutral-400' >
+           {isOpenList && (
+           {ListTitle.map((tab) => (
           <div className='flex' onClick={()=>{setisActive(tab)}}>
-          <option key={tab} >{tab}</option>
+          <li key={tab} >{tab}</li>
           </div>
         ))}
-        </select>
+           )}
+        </ul>
     </div>
   )
 }
