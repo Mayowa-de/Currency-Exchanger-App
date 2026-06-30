@@ -16,8 +16,7 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
 
    // NEW: input + conversion state
   const [sendAmount, setSendAmount] = useState('');
-  const [receiveAmount, setReceiveAmount] =useState('');
-  const [lastEdited, setLastEdited] =useState('send');
+  const [receiveAmount, setReceiveAmount] =useState('')
   const [isConverting, setIsConverting] = useState(false);
   const [conversionError, setConversionError] = useState(null);
   
@@ -46,34 +45,30 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
   const handleConvert = async () => {
   setConversionError(null)
 
-  const sourceAmount = lastEdited === 'send' ? sendAmount : receiveAmount
-  const fromCurrency = lastEdited === 'send' ? baseSendCurrency : baseReceiveCurrency
-  const toCurrency = lastEdited === 'send' ? baseReceiveCurrency : baseSendCurrency
-
-  if (!sourceAmount || Number(sourceAmount) <= 0) {
+  if (!sendAmount || isNaN(Number(sendAmount)) || Number(sendAmount) <= 0) {
     setConversionError('Enter a valid amount')
     return
   }
 
   if (baseSendCurrency === baseReceiveCurrency) {
-    if (lastEdited === 'send') setReceiveAmount(sourceAmount)
-    else setSendAmount(sourceAmount)
+    setReceiveAmount(sendAmount)
     return
   }
 
   setIsConverting(true)
   try {
     const response = await fetch(
-      `https://api.frankfurter.app/latest?amount=${sourceAmount}&from=${fromCurrency}&to=${toCurrency}`
+      `https://api.frankfurter.app/latest?amount=${sendAmount}&from=${baseSendCurrency}&to=${baseReceiveCurrency}`
     )
     const data = await response.json()
-    const result = data.rates[toCurrency]
+    const result = data.rates[baseReceiveCurrency]
 
-    if (lastEdited === 'send') {
-      setReceiveAmount(result.toFixed(2))
-    } else {
-      setSendAmount(result.toFixed(2))
+    if (result === undefined) {
+      setConversionError('Rate not available for this pair')
+      return
     }
+
+    setReceiveAmount(result.toFixed(2))
   } catch (err) {
     console.error('Conversion failed:', err.message)
     setConversionError('Conversion failed, try again')
@@ -91,13 +86,13 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
           <div className='md:w-[450px] w-full  md:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND</h2>
             <div className='flex justify-between gap-[auto]'>
-              <input value={sendAmount} onChange={(e)=>{ 
-                const value= e.target.value
-                if (/^\d*\.?\d*$/.test(value)) {
-                    setSendAmount(value)
-                    setLastEdited('send')
-                 }}} 
-                type="text" className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
+              <input
+                type="text"
+                readOnly
+                value={receiveAmount}
+                placeholder="0"
+                 className='w-[123px] h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem] rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]'
+                />
               <div ref={sendDropdownRef} className='relative w-[110px]'>
               <button onClick={()=>setIsSendOpen(!isSendOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px]'>
                 {getFlag(baseSendCurrency) && (
@@ -134,13 +129,14 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
           <div className='laptop:w-[450px] w-full laptop:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>RECEIVE</h2>
             <div className='flex justify-between gap-[auto]'>
-              <input type="text" value={receiveAmount} onChange={(e)=>{
-                 const value=e.target.value  
-                  if (/^\d*\.?\d*$/.test(value)) {
-                    setReceiveAmount(value)
-                    setLastEdited('receive')
-                  }}} 
-               className='w-[123px]  h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem]  rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]' />
+              <input
+                type="text"
+                readOnly
+                value={receiveAmount}
+                placeholder="0"
+               className='w-[123px] h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem] rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]'
+              
+              />
             <div ref={receiveDropdownRef} className='relative w-[110px]'>
               <button onClick={()=>setIsReceiveOpen(!isReceiveOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px]'>
                 {getFlag(baseReceiveCurrency) && (
