@@ -16,6 +16,8 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
 
    // NEW: input + conversion state
   const [sendAmount, setSendAmount] = useState('');
+  const [receiveAmount, setReceiveAmount] =useState('');
+  const [lastEdited, setLastEdited] =useState('send');
   const [convertedAmount, setConvertedAmount] = useState(null);
   const [isConverting, setIsConverting] = useState(false);
   const [conversionError, setConversionError] = useState(null);
@@ -57,11 +59,17 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
 
     setIsConverting(true)
     try {
-      const res = await fetch(
+      const data = await fetch(
         `https://api.frankfurter.app/latest?amount=${sendAmount}&from=${baseSendCurrency}&to=${baseReceiveCurrency}`
       )
-      const result = res.data.rates[baseReceiveCurrency]
-      setConvertedAmount(result)
+      const res= data.rates[baseReceiveCurrency]
+      const result= res.json()
+      if (lastEdited === 'send') {
+        setReceiveAmount(result.toFixed(2))
+      } else {
+        setSendAmount(result.toFixed(2))
+         }
+      
     } catch (err) {
       console.error('Conversion failed:', err.response?.data || err.message)
       setConversionError('Conversion failed, try again')
@@ -84,6 +92,7 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
                 const value= e.target.value
                 if (/^\d*\.?\d*$/.test(value)) {
                     setSendAmount(value)
+                    setLastEdited('send')
                  }}} 
                 type="text" className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
               <div ref={sendDropdownRef} className='relative w-[110px]'>
@@ -122,10 +131,11 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
           <div className='laptop:w-[450px] w-full laptop:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>RECEIVE</h2>
             <div className='flex justify-between gap-[auto]'>
-              <input type="text" value={sendAmount} onChange={(e)=>{
+              <input type="text" value={receiveAmount} onChange={(e)=>{
                  const value=e.target.value  
                   if (/^\d*\.?\d*$/.test(value)) {
-                    setSendAmount(value)
+                    setReceiveAmount(value)
+                    setLastEdited('receive')
                   }}} 
                className='w-[123px]  h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem]  rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]' />
             <div ref={receiveDropdownRef} className='relative w-[110px]'>
@@ -163,9 +173,9 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
           <div className='text-[14px]'>
              {isConverting && <span>Converting...</span>}
              {!isConverting && conversionError && <span className='text-red-500'>{conversionError}</span>}
-             {!isConverting && !conversionError && convertedAmount !== null && (
+             {!isConverting && !conversionError && receiveAmount && sendAmount && (
             <span className='text-[#CEF739]'>
-            {sendAmount}  {baseSendCurrency}  <img src={Exchange} alt='Exchange icon'/> {baseReceiveCurrency}= {convertedAmount}
+            {sendAmount}  {baseSendCurrency}  <img src={Exchange} alt='Exchange icon' className='w-[12px] h-[12px]'/>{receiveAmount} {baseReceiveCurrency}
            </span>
             )}
           </div>
