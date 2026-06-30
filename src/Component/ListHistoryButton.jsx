@@ -10,12 +10,12 @@ export default function ListHistoryButton() {
     <div className='laptop:w-[1036px] laptop:gap-[20px] mt-2'>
       <ul onClick={()=>setIsOpenList(!isOpenList)} className='md:flex hidden gap-[8px] text-[#FFFF]'>
           {isOpenList &&(
-        {ListTitle.map((tab)=>(
+        ListTitle.map((tab)=>(
         <div className='flex flex-col gap-[4px]' key={tab} onClick={()=>{setisActive(tab)}} role='button'>
         <li className='p-[8px] text-[16px]'>{tab}</li>
         <hr className={isActive === tab ? 'border-lime-500' : 'border-none'} />
         </div>
-        ))}
+        ))
           )}
       </ul>
       <hr className='border-neutral-600 md:flex hidden'/>
