@@ -13,6 +13,12 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
   const sendDropdownRef = useRef(null);
   const receiveDropdownRef = useRef(null);
 
+   // NEW: input + conversion state
+  const [sendAmount, setSendAmount] = useState('');
+  const [convertedAmount, setConvertedAmount] = useState(null);
+  const [isConverting, setIsConverting] = useState(false);
+  const [conversionError, setConversionError] = useState(null);
+  
   useEffect(() => {
   function handleClickOutsideSend(e) {
     if (sendDropdownRef.current && !sendDropdownRef.current.contains(e.target)) {
@@ -35,6 +41,35 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
   }
 }, [])
 
+  const handleConvert = async () => {
+    setConversionError(null)
+
+    if (!sendAmount || Number(sendAmount) <= 0) {
+      setConversionError('Enter a valid amount')
+      return
+    }
+
+    if (baseSendCurrency === baseReceiveCurrency) {
+      setConvertedAmount(Number(sendAmount))
+      return
+    }
+
+    setIsConverting(true)
+    try {
+      const res = await axios.get(
+        `https://api.frankfurter.app/latest?amount=${sendAmount}&from=${baseSendCurrency}&to=${baseReceiveCurrency}`
+      )
+      const result = res.data.rates[baseReceiveCurrency]
+      setConvertedAmount(result)
+    } catch (err) {
+      console.error('Conversion failed:', err.response?.data || err.message)
+      setConversionError('Conversion failed, try again')
+    } finally {
+      setIsConverting(false)
+    }
+  }
+  
+
   return (
     <section className='flex flex-col w-full md:w-[1036px] md:h-[931px]  gap-[16px]'>
       <h1 className='text-[1.25rem] text-[jetbrains-mono, regular] tracking-[-0.5px] leading-[120%] text-[#FFFFFF]'>CHECK THE RATE</h1>
@@ -44,7 +79,9 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
           <div className='md:w-[450px] w-full  md:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND</h2>
             <div className='flex justify-between gap-[auto]'>
-              <input type="text" className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
+              <input value={sendAmount} onChange={(e)=>{ const value= e.target.value if (/^\d*\.?\d*$/.test(value)) {
+                    setSendAmount(value)
+          }}} type="text" className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
               <div ref={sendDropdownRef} className='relative w-[110px]'>
               <button onClick={()=>setIsSendOpen(!isSendOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px]'>
                 {getFlag(baseSendCurrency) && (
@@ -79,7 +116,9 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
           <div className='laptop:w-[450px] w-full laptop:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>RECEIVE</h2>
             <div className='flex justify-between gap-[auto]'>
-              <input type="text" className='w-[123px]  h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem]  rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]' />
+              <input type="text" value={sendAmount} onChange={(e)=> const value=e.target.value  if (/^\d*\.?\d*$/.test(value)) {
+                    setSendAmount(value)
+                  }}} className='w-[123px]  h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem]  rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]' />
             <div ref={receiveDropdownRef} className='relative w-[110px]'>
               <button onClick={()=>setIsReceiveOpen(!isReceiveOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px]'>
                 {getFlag(baseReceiveCurrency) && (
