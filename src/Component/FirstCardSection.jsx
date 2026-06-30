@@ -86,13 +86,13 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
           <div className='md:w-[450px] w-full  md:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND</h2>
             <div className='flex justify-between gap-[auto]'>
-              <input
-                type="text"
-                readOnly
-                value={receiveAmount}
-                placeholder="0"
-                 className='w-[123px] h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem] rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]'
-                />
+                <input value={sendAmount} onChange={(e)=>{ 
+               const value= e.target.value
+              if (/^\d*\.?\d*$/.test(value))
+                }
+               setSendAmount(value)
+                 }}} 
+className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
               <div ref={sendDropdownRef} className='relative w-[110px]'>
               <button onClick={()=>setIsSendOpen(!isSendOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px]'>
                 {getFlag(baseSendCurrency) && (
