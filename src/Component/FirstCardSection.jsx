@@ -5,6 +5,7 @@ import StarIcon from '../assets/images/icon-star.svg'
 import { getFlag } from './crrencyFlags'
 import {ChevronDown} from 'lucide-react'
 import StarFillIcon from '../assets/images/icon-star-filled.svg'
+import axios from 'axios'
 
 export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency, setBaseReceiveCurrency, setBaseSendCurrency, options }) {
   const [isStared, setisStared] = useState(false);
@@ -79,9 +80,12 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
           <div className='md:w-[450px] w-full  md:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND</h2>
             <div className='flex justify-between gap-[auto]'>
-              <input value={sendAmount} onChange={(e)=>{ const value= e.target.value if (/^\d*\.?\d*$/.test(value)) {
+              <input value={sendAmount} onChange={(e)=>{ 
+                const value= e.target.value
+                if (/^\d*\.?\d*$/.test(value)) {
                     setSendAmount(value)
-          }}} type="text" className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
+                 }}} 
+                type="text" className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
               <div ref={sendDropdownRef} className='relative w-[110px]'>
               <button onClick={()=>setIsSendOpen(!isSendOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px]'>
                 {getFlag(baseSendCurrency) && (
@@ -118,9 +122,12 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
           <div className='laptop:w-[450px] w-full laptop:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>RECEIVE</h2>
             <div className='flex justify-between gap-[auto]'>
-              <input type="text" value={sendAmount} onChange={(e)=> const value=e.target.value  if (/^\d*\.?\d*$/.test(value)) {
+              <input type="text" value={sendAmount} onChange={(e)=>{
+                 const value=e.target.value  
+                  if (/^\d*\.?\d*$/.test(value)) {
                     setSendAmount(value)
-                  }}} className='w-[123px]  h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem]  rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]' />
+                  }}} 
+               className='w-[123px]  h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem]  rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]' />
             <div ref={receiveDropdownRef} className='relative w-[110px]'>
               <button onClick={()=>setIsReceiveOpen(!isReceiveOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px]'>
                 {getFlag(baseReceiveCurrency) && (
@@ -153,7 +160,15 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
 
         <hr className='text-[5px] border-dashed border-[1px] border-neutral-900 leading-1' />
         <div className='flex justify-between items-center'>
-          <div>{isConverting ? convertedAmount : 'loading...'}</div>
+          <div className='text-[14px]'>
+             {isConverting && <span>Converting...</span>}
+             {!isConverting && conversionError && <span className='text-red-500'>{conversionError}</span>}
+             {!isConverting && !conversionError && convertedAmount !== null && (
+            <span className='text-[#CEF739]'>
+            {sendAmount}  {baseSendCurrency}  <img src={Exchange} alt='Exchange icon'/> {baseReceiveCurrency}= {convertedAmount}
+           </span>
+            )}
+          </div>
 
           <div className='flex gap-2'>
             <button className='bg-[#CEF739] flex  focus:border-neutral-900 focus:border-[1px] focus:ring-[#CEF739] focus:ring-1 focus:outline-none  leading-[1.3] tracking-[0.5px] rounded-[8px] px-[12px] p-[8px] items-center gap-[8px]' onClick={()=>setisStared(!isStared)}>
