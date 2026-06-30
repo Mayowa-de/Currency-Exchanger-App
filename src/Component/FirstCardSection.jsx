@@ -18,7 +18,6 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
   const [sendAmount, setSendAmount] = useState('');
   const [receiveAmount, setReceiveAmount] =useState('');
   const [lastEdited, setLastEdited] =useState('send');
-  const [convertedAmount, setConvertedAmount] = useState(null);
   const [isConverting, setIsConverting] = useState(false);
   const [conversionError, setConversionError] = useState(null);
   
@@ -59,11 +58,11 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
 
     setIsConverting(true)
     try {
-      const data = await fetch(
+      const response = await fetch(
         `https://api.frankfurter.app/latest?amount=${sendAmount}&from=${baseSendCurrency}&to=${baseReceiveCurrency}`
       )
+      const data  = await response.json()
       const res= data.rates[baseReceiveCurrency]
-      const result= res.json()
       if (lastEdited === 'send') {
         setReceiveAmount(result.toFixed(2))
       } else {
