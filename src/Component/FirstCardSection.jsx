@@ -5,7 +5,7 @@ import StarIcon from '../assets/images/icon-star.svg'
 import { getFlag } from './crrencyFlags'
 import {ChevronDown} from 'lucide-react'
 import StarFillIcon from '../assets/images/icon-star-filled.svg'
-import axios from 'axios'
+
 
 export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency, setBaseReceiveCurrency, setBaseSendCurrency, options }) {
   const [isStared, setisStared] = useState(false);
@@ -57,7 +57,7 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
 
     setIsConverting(true)
     try {
-      const res = await axios.get(
+      const res = await fetch(
         `https://api.frankfurter.app/latest?amount=${sendAmount}&from=${baseSendCurrency}&to=${baseReceiveCurrency}`
       )
       const result = res.data.rates[baseReceiveCurrency]
