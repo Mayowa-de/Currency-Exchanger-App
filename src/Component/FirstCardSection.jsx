@@ -109,10 +109,12 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
             </div>
             </div>
           </div>
-          <button className='w-[48px] h-[48px] px-[10px] p-[10px] bg-[#2E2E2E] rounded-[8px] items-center flex justify-center focus:border-2 focus:border-[#CEF739]' role='button'>
+          
+          <button onClick={handleConvert} className='w-[48px] h-[48px] px-[10px] p-[10px] bg-[#2E2E2E] rounded-[8px] items-center flex justify-center focus:border-2 focus:border-[#CEF739]' role='button'>
             <img src={Vertical_Exchange} alt="exchange-icon-vertical" className='w-[20px] h-[20px] items-center flex md:hidden '/>
             <img src={Exchange} alt="exchange-icon" className='w-[20px] h-[20px] items-center md:flex hidden' />
           </button>
+          
           <div className='laptop:w-[450px] w-full laptop:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>RECEIVE</h2>
             <div className='flex justify-between gap-[auto]'>
@@ -151,7 +153,7 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
 
         <hr className='text-[5px] border-dashed border-[1px] border-neutral-900 leading-1' />
         <div className='flex justify-between items-center'>
-          <div></div>
+          <div>{isConverting ? convertedAmount : 'loading...'}</div>
 
           <div className='flex gap-2'>
             <button className='bg-[#CEF739] flex  focus:border-neutral-900 focus:border-[1px] focus:ring-[#CEF739] focus:ring-1 focus:outline-none  leading-[1.3] tracking-[0.5px] rounded-[8px] px-[12px] p-[8px] items-center gap-[8px]' onClick={()=>setisStared(!isStared)}>
