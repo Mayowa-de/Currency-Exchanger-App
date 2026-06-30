@@ -44,39 +44,43 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
 }, [])
 
   const handleConvert = async () => {
-    setConversionError(null)
+  setConversionError(null)
 
-    if (!sendAmount || Number(sendAmount) <= 0) {
-      setConversionError('Enter a valid amount')
-      return
-    }
+  const sourceAmount = lastEdited === 'send' ? sendAmount : receiveAmount
+  const fromCurrency = lastEdited === 'send' ? baseSendCurrency : baseReceiveCurrency
+  const toCurrency = lastEdited === 'send' ? baseReceiveCurrency : baseSendCurrency
 
-    if (baseSendCurrency === baseReceiveCurrency) {
-      setConvertedAmount(Number(sendAmount))
-      return
-    }
-
-    setIsConverting(true)
-    try {
-      const response = await fetch(
-        `https://api.frankfurter.app/latest?amount=${sendAmount}&from=${baseSendCurrency}&to=${baseReceiveCurrency}`
-      )
-      const data  = await response.json()
-      const result = data.rates[baseReceiveCurrency]
-      if (lastEdited === 'send') {
-        setReceiveAmount(result.toFixed(2))
-      } else {
-        setSendAmount(result.toFixed(2))
-         }
-      
-    } catch (err) {
-      console.error('Conversion failed:', err.response?.data || err.message)
-      setConversionError('Conversion failed, try again')
-    } finally {
-      setIsConverting(false)
-    }
+  if (!sourceAmount || Number(sourceAmount) <= 0) {
+    setConversionError('Enter a valid amount')
+    return
   }
-  
+
+  if (baseSendCurrency === baseReceiveCurrency) {
+    if (lastEdited === 'send') setReceiveAmount(sourceAmount)
+    else setSendAmount(sourceAmount)
+    return
+  }
+
+  setIsConverting(true)
+  try {
+    const response = await fetch(
+      `https://api.frankfurter.app/latest?amount=${sourceAmount}&from=${fromCurrency}&to=${toCurrency}`
+    )
+    const data = await response.json()
+    const result = data.rates[toCurrency]
+
+    if (lastEdited === 'send') {
+      setReceiveAmount(result.toFixed(2))
+    } else {
+      setSendAmount(result.toFixed(2))
+    }
+  } catch (err) {
+    console.error('Conversion failed:', err.message)
+    setConversionError('Conversion failed, try again')
+  } finally {
+    setIsConverting(false)
+  }
+}
 
   return (
     <section className='flex flex-col w-full md:w-[1036px] md:h-[931px]  gap-[16px]'>
