@@ -22,11 +22,11 @@ export default function ListHistoryButton() {
 
        <ul onClick={()=>setIsOpenList(!isOpenList)} className='flex w-full h-[40px]  md:hidden list-style-none rounded px-[12px] text-white bg-neutral-900 border-1 border-neutral-400' >
            {isOpenList && (
-           {ListTitle.map((tab) => (
+           ListTitle.map((tab) => (
           <div className='flex' onClick={()=>{setisActive(tab)}}>
           <li key={tab} >{tab}</li>
           </div>
-        ))}
+        ))
            )}
         </ul>
     </div>
