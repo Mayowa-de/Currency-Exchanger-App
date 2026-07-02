@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { ChevronDown } from 'lucide-react'
+import ListHistoryCard from './ListHistoryCard.jsx'
 
 export default function ListHistoryButton() {
   const [isActive, setisActive] = useState("HISTORY")
@@ -64,6 +65,12 @@ export default function ListHistoryButton() {
           </ul>
         )}
       </div>
+      {/* ListHistoryCard Display */}
+      {isActive === 'HISTORY' ? (
+        <ListHistoryCard/>
+      ) : (
+      <p>No History Card Available </p>
+      )}
     </div>
   )
 }
