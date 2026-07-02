@@ -78,7 +78,7 @@ export default function ListHistoryButton({baseCurrency, options}) {
       <CompareListSection baseCurrency={baseCurrency} options={options}/>
       ) : (
       <p>No Compare List is Available</p>
-      )
+      )}
     </div>
   )
 }
