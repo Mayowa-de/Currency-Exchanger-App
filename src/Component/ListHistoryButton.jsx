@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { ChevronDown } from 'lucide-react'
 import HistorySectionCard from './HistorySectionCard.jsx'
+import CompareListSection from './CompareListSection'
 
 export default function ListHistoryButton() {
   const [isActive, setisActive] = useState("HISTORY")
@@ -71,6 +72,13 @@ export default function ListHistoryButton() {
       ) : (
       <p>No History Card Available </p>
       )}
+      
+      {/* CompareListSection Display */}
+      {isActive === 'COMPARE' ? (
+      <CompareListSection />
+      ) : (
+      <p>No Compare List is Available</p>
+      )
     </div>
   )
 }
