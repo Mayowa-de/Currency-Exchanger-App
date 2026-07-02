@@ -7,7 +7,7 @@ import {ChevronDown} from 'lucide-react'
 import StarFillIcon from '../assets/images/icon-star-filled.svg'
 
 
-export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency, setBaseReceiveCurrency, setBaseSendCurrency, options }) {
+export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency,baseReceiveCurrency, setBaseReceiveCurrency,  options }) {
   const [isStared, setisStared] = useState(false);
   const [isSendOpen, setIsSendOpen] = useState(false);
   const [isReceiveOpen, setIsReceiveOpen] = useState(false);
@@ -57,18 +57,23 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
 
   setIsConverting(true)
   try {
+
+    console.log('Converting:', sendAmount, baseSendCurrency, baseReceiveCurrency)
     const response = await fetch(
-      `https://api.frankfurter.app/latest?amount=${sendAmount}&from=${baseSendCurrency}&to=${baseReceiveCurrency}`
+      `https://currency-exchanger-app-backend.onrender.com/api?amount=${sendAmount}&from=${baseSendCurrency}&to=${baseReceiveCurrency}` || 'http://localhost:3000/api'
     )
     const data = await response.json()
-    const result = data.rates[baseReceiveCurrency]
+    console.log('API response:', data)
+    const currencyMatch = data.currencies.find((c)=> c.code === baseReceiveCurrency)
+    const result = currencyMatch ? currencyMatch.rate.toFixed(2) * Number(receiveAmount) : null
+    console.log('Conversion result:', currencyMatch)
 
-    if (result === undefined) {
+    if (currencyMatch === undefined) {
       setConversionError('Rate not available for this pair')
       return
     }
 
-    setReceiveAmount(result.toFixed(2))
+    setReceiveAmount(result)
   } catch (err) {
     console.error('Conversion failed:', err.message)
     setConversionError('Conversion failed, try again')
@@ -168,18 +173,18 @@ export default function FirstCardSection({ baseSendCurrency,baseReceiveCurrency,
 
 
         <hr className='text-[5px] border-dashed border-[1px] border-neutral-900 leading-1' />
-        <div className='flex justify-between items-center'>
-          <div className='text-[14px]'>
+        <div className='flex md:justify-between flex-col md:items-center'>
+          <div className='text-[14px] flex'>
              {isConverting && <span>Converting...</span>}
              {!isConverting && conversionError && <span className='text-red-500'>{conversionError}</span>}
              {!isConverting && !conversionError && receiveAmount && sendAmount && (
-            <span className='text-[#CEF739]'>
+            <span className='text-[#CEF739] flex gap-[4px]'>
             {sendAmount}  {baseSendCurrency}  <img src={Exchange} alt='Exchange icon' className='w-[12px] h-[12px]'/>{receiveAmount} {baseReceiveCurrency}
            </span>
             )}
           </div>
 
-          <div className='flex gap-2'>
+          <div className='flex gap-2 items-center'>
             <button className='bg-[#CEF739] flex  focus:border-neutral-900 focus:border-[1px] focus:ring-[#CEF739] focus:ring-1 focus:outline-none  leading-[1.3] tracking-[0.5px] rounded-[8px] px-[12px] p-[8px] items-center gap-[8px]' onClick={()=>setisStared(!isStared)}>
               {isStared ? <img src={StarFillIcon} width={'16px'} height={'16px'} alt='star-filled-icon' className="shadow-md"/> : <img src={StarIcon} width={'16px'} height={'16px'} alt='star-icon' className='text-neutral-900  overflow-hidden'/>}
               Favorited
