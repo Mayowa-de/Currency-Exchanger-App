@@ -29,5 +29,5 @@ export default function CompareListSection({baseCurrency, options}){
       <ul key={currency.code} >
         <li>{currency}</li>
       </ul>
-    )}                
+    ))}                
   </div>
