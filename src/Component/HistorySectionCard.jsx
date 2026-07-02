@@ -42,7 +42,7 @@ export default function HistorySectionCard({baseCurrency}) {
         </div>
         <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
             <p>% CHANGE</p>
-            <span className='text-green-500'>{currency.percentage}%</span>
+            <span className='text-green-500'>{currency.percentageChange}%</span>
         </div>
       </div>
 
