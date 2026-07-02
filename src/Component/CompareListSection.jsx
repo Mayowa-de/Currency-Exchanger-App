@@ -26,7 +26,7 @@ export default function CompareListSection({baseCurrency, options}){
   return (
     <div className='flex gap-[4px]'>
       {currentData.map((currency)=>(
-      <ul key={currency.code} >
+      <ul key={`${currency.code} - ${index}`} >
         <li>{currency.base} {currency.code}</li>
       </ul>
     ))}                
