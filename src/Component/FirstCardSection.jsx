@@ -65,7 +65,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
     const data = await response.json()
     console.log('API response:', data)
     const currencyMatch = data.currencies.find((c)=> c.code === baseReceiveCurrency)
-    const result = currencyMatch ? currencyMatch.rate.toFixed(2) * Number(receiveAmount) : null
+    const result = currencyMatch ? currencyMatch.rate.toFixed(2) * Number(sendAmount) : null
     console.log('Conversion result:', currencyMatch)
 
     if (currencyMatch === undefined) {
