@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 
 
-const CompareListSection = ({baseCurrency, options}) =>{
+export default function CompareListSection({baseCurrency, options}){
   const [currentData, setCurrentData] = useState([])
 
   useEffect(() => {
@@ -29,6 +29,5 @@ const CompareListSection = ({baseCurrency, options}) =>{
       <ul key={currency.code} >
         <li>{currency}</li>
       </ul>
-      </div>
-    )}
-export default CompareListSection
+    )}                
+  </div>
