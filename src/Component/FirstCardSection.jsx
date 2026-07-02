@@ -15,8 +15,8 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
   const receiveDropdownRef = useRef(null);
 
    // NEW: input + conversion state
-  const [sendAmount, setSendAmount] = useState('');
-  const [receiveAmount, setReceiveAmount] =useState('')
+  const [sendAmount, setSendAmount] = useState(1000);
+  const [receiveAmount, setReceiveAmount] =useState(0)
   const [isConverting, setIsConverting] = useState(false);
   const [conversionError, setConversionError] = useState(null);
   
