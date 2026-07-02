@@ -21,7 +21,7 @@ export default function ListHistoryButton() {
   }, [])
 
   return (
-    <div className='laptop:w-[1036px] laptop:gap-[20px] mt-2 flex flex-col'>
+    <div className='laptop:w-[1036px] laptop:gap-[20px] mt-2 flex flex-col gap-[8px]'>
       {/* Desktop tabs */}
       <ul className='md:flex hidden gap-[8px] text-[#FFFF]'>
         {ListTitle.map((tab) => (
