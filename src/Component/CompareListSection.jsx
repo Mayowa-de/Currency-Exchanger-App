@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 
 
-const CompareListSection = ({baseCurrency}) =>{
+const CompareListSection = ({baseCurrency, options}) =>{
   const [currentData, setCurrentData] = useState([])
 
   useEffect(() => {
