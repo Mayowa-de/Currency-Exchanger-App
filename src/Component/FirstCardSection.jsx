@@ -173,7 +173,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
 
 
         <hr className='text-[5px] border-dashed border-[1px] border-neutral-900 leading-1' />
-        <div className='flex md:justify-between flex-col md:items-center'>
+        <div className='flex md:justify-between flex-col md:items-center gap-[8px]'>
           <div className='text-[14px] flex'>
              {isConverting && <span>Converting...</span>}
              {!isConverting && conversionError && <span className='text-red-500'>{conversionError}</span>}
