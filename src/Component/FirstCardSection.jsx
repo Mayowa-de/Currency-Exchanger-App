@@ -4,11 +4,9 @@ import Exchange from '../assets/images/icon-exchange.svg'
 import StarIcon from '../assets/images/icon-star.svg'
 import { getFlag } from './crrencyFlags'
 import {ChevronDown} from 'lucide-react'
-import StarFillIcon from '../assets/images/icon-star-filled.svg'
 
 
 export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency,baseReceiveCurrency, setBaseReceiveCurrency,  options }) {
-  const [isStared, setisStared] = useState(false);
   const [isSendOpen, setIsSendOpen] = useState(false);
   const [isReceiveOpen, setIsReceiveOpen] = useState(false);
   const sendDropdownRef = useRef(null);
@@ -180,15 +178,15 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
              {isConverting && <span>Converting...</span>}
              {!isConverting && conversionError && <span className='text-red-500'>{conversionError}</span>}
              {!isConverting && !conversionError && receiveAmount && sendAmount && (
-            <span className='text-[#CEF739] flex gap-[4px]'>
-            {sendAmount}  {baseSendCurrency}  <img src={Exchange} alt='Exchange icon' className='w-[12px] h-[12px]'/>{receiveAmount} {baseReceiveCurrency} = {currencyRate}
+            <span className='text-[#CEF739] flex gap-[4px] items-center'>
+            {sendAmount}  {baseSendCurrency}  <img src={Exchange} alt='Exchange icon' className='w-[12px] h-[12px] p-[4px]'/>{receiveAmount} {baseReceiveCurrency} = {currencyRate}
            </span>
             )}
           </div>
 
           <div className='flex gap-2 items-center'>
-            <button className='bg-[#CEF739] flex  focus:border-neutral-900 focus:border-[1px] focus:ring-[#CEF739] focus:ring-1 focus:outline-none  leading-[1.3] tracking-[0.5px] rounded-[8px] px-[12px] p-[8px] items-center gap-[8px]' onClick={()=>setisStared(!isStared)}>
-              {isStared ? <img src={StarFillIcon} width={'16px'} height={'16px'} alt='star-filled-icon' className="shadow-md"/> : <img src={StarIcon} width={'16px'} height={'16px'} alt='star-icon' className='text-neutral-900  overflow-hidden'/>}
+            <button className='bg-[#CEF739] flex  focus:border-neutral-900 focus:border-[1px] focus:ring-[#CEF739] focus:ring-1 focus:outline-none  leading-[1.3] tracking-[0.5px] rounded-[8px] px-[12px] p-[8px] items-center gap-[8px]'>
+             <img src={StarIcon} width={'16px'} height={'16px'} alt='star-icon' className='text-neutral-900  overflow-hidden'/>
               Favorited
             </button>
             <button className='focus:ring-[#CEF739] focus:ring-2 focus:outline-none  leading-[1.3] tracking-[0.5px] text-neutral-50 text-[12px] bg-neutral-900 rounded-[8px] px-[12px] p-[8px]'>LOG CONVERSION</button>
