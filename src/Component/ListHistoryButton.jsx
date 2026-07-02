@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react'
 import HistorySectionCard from './HistorySectionCard.jsx'
 import CompareListSection from './CompareListSection'
 
-export default function ListHistoryButton() {
+export default function ListHistoryButton({baseCurrency, options}) {
   const [isActive, setisActive] = useState("HISTORY")
   const [isOpenList, setIsOpenList] = useState(false)
   const dropdownRef = useRef(null)
@@ -68,14 +68,14 @@ export default function ListHistoryButton() {
       </div>
       {/* ListHistoryCard Display */}
       {isActive === 'HISTORY' ? (
-        <HistorySectionCard/>
+        <HistorySectionCard baseCurrency={baseCurrency}/>
       ) : (
       <p>No History Card Available </p>
       )}
       
       {/* CompareListSection Display */}
       {isActive === 'COMPARE' ? (
-      <CompareListSection />
+      <CompareListSection baseCurrency={baseCurrency} options={options}/>
       ) : (
       <p>No Compare List is Available</p>
       )
