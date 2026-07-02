@@ -31,3 +31,4 @@ export default function CompareListSection({baseCurrency, options}){
       </ul>
     ))}                
   </div>
+    )}
