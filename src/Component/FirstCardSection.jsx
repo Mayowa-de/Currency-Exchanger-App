@@ -16,7 +16,8 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
 
    // NEW: input + conversion state
   const [sendAmount, setSendAmount] = useState(1000);
-  const [receiveAmount, setReceiveAmount] =useState(0)
+  const [receiveAmount, setReceiveAmount] =useState(0);
+  const [currencyRate, setCurrencyRate ] = useState(0);
   const [isConverting, setIsConverting] = useState(false);
   const [conversionError, setConversionError] = useState(null);
   
@@ -65,6 +66,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
     const data = await response.json()
     console.log('API response:', data)
     const currencyMatch = data.currencies.find((c)=> c.code === baseReceiveCurrency)
+    const rateResult = currencyMatch.rate.toFixed(2)
     const result = currencyMatch ? currencyMatch.rate.toFixed(2) * Number(sendAmount) : null
     console.log('Conversion result:', currencyMatch)
 
@@ -72,7 +74,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
       setConversionError('Rate not available for this pair')
       return
     }
-
+    setCurrencyRate(rateResult)
     setReceiveAmount(result)
   } catch (err) {
     console.error('Conversion failed:', err.message)
@@ -179,7 +181,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
              {!isConverting && conversionError && <span className='text-red-500'>{conversionError}</span>}
              {!isConverting && !conversionError && receiveAmount && sendAmount && (
             <span className='text-[#CEF739] flex gap-[4px]'>
-            {sendAmount}  {baseSendCurrency}  <img src={Exchange} alt='Exchange icon' className='w-[12px] h-[12px]'/>{receiveAmount} {baseReceiveCurrency}
+            {sendAmount}  {baseSendCurrency}  <img src={Exchange} alt='Exchange icon' className='w-[12px] h-[12px]'/>{receiveAmount} {baseReceiveCurrency} = {currencyRate}
            </span>
             )}
           </div>
