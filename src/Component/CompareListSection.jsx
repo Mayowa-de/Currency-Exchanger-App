@@ -30,9 +30,9 @@ export default function CompareListSection({baseCurrency, options}){
       <ul key={currency.code} className='flex flex-col gap-[4px] bg-neutral-600 text-neutral-200'>
         <li className='flex justify-between gap-[4px]'>
           {getFlag(currency.code) && (
-          <img src={getFlag(currency.code)} alt={currency.code}/>
+          <img src={getFlag(currency.code)} w-[12px] h-[12px] alt={currency.code}/>
         )}
-          {currency.base} {currency.code}</li>
+          <span>{currency.base} {currency.code}</span></li>
       </ul>
     ))}                
   </div>
