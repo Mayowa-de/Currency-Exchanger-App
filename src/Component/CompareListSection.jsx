@@ -25,14 +25,14 @@ export default function CompareListSection({baseCurrency, options}){
     fetchData()
   }, [baseCurrency])
   return (
-    <div className='flex flex-col text-neutral-200 gap-[4px] bg-neutral-600 rounded'>
+    <div className='flex flex-col  gap-[4px] bg-neutral-600 rounded-full border-none '>
       {currentData.map((currency)=>(
       <ul key={currency.code} className='flex flex-col gap-[4px] bg-neutral-600 text-neutral-200 p-[12px] px-[8px] rounded'>
-        <li className='flex items-center justify-between gap-[4px] p-[8px]'>
+        <li className='flex items-center justify-between gap-[4px] p-[8px] px-[12px]'>
           {getFlag(currency.code) && (
-          <img src={getFlag(currency.code)} className='w-[15px] h-[15px] border-none rounded' alt={currency.code}/>
+          <img src={getFlag(currency.code)} className='w-[25px] h-[25px] border-none rounded' alt={currency.code}/>
         )}
-          <span className='flex gap-[8px]>{currency.base} {currency.code}</span></li>
+          <span className='flex gap-[12px]>{currency.base} {currency.code}</span></li>
       </ul>
     ))}                
   </div>
