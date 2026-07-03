@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import {getFlag} from './crrencyFlag'
 
 
 export default function CompareListSection({baseCurrency, options}){
@@ -27,7 +28,11 @@ export default function CompareListSection({baseCurrency, options}){
     <div className='flex flex-col text-neutral-200 gap-[4px] bg-neutral-600 rounded'>
       {currentData.map((currency)=>(
       <ul key={currency.code} className='flex flex-col gap-[4px] bg-neutral-600 text-neutral-200'>
-        <li className='flex justify-between gap-[4px]'><img src={options(code)}/>{currency.base} {currency.code}</li>
+        <li className='flex justify-between gap-[4px]'>
+          {getFlag(currency.code) && (
+          <img src={getFlag(currency.code)} alt={currency.code}/>
+        )}
+          {currency.base} {currency.code}</li>
       </ul>
     ))}                
   </div>
