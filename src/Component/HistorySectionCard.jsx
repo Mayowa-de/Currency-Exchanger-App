@@ -4,7 +4,7 @@ export default function HistorySectionCard({baseCurrency, baseReceiveCurrency}) 
   const [isActiveDate, setisActiveDate] = useState("1M");
 
   const listDate =['1D','1W', '1M', '1Y', '5Y'];
-  const [currentData, setCurrentData] = useState([])
+  const [currentData, setCurrentData] = useState(null)
 
   useEffect(() => {
     async function fetchData() {
@@ -13,26 +13,24 @@ export default function HistorySectionCard({baseCurrency, baseReceiveCurrency}) 
         const response = await fetch(apiUrl)
         const data = await response.json()
         console.log("Current Data:", data.currencies) 
-      setCurrentData(data.currencies?.find((c)=>{
-        c.code === baseReceiveCurrency
-      }))
+      setCurrentData(data.currencies?.find((c)=>c.code === baseReceiveCurrency))
 
       } catch (error) {
         console.log("Error can't fetch api", error)
       }
     }
     fetchData()
-  }, [baseCurrency])
+  }, [baseCurrency, baseReceiveCurrency])
   return (
     <div className='md:flex-row flex flex-col md:justify-between gap-[16px]  md:items-center'>
       <div className='md:flex gap-[16px] grid grid-cols-2  w-full'>
         <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
             <p>OPEN</p>
-            <span className='text-neutral-50'>{currentData.rate}</span>
+            <span className='text-neutral-50'>{currentData?.rate}</span>
         </div>
         <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
             <p>LAST</p>
-            <span className='text-neutral-50'>{currentData.last}</span>
+            <span className='text-neutral-50'>{currentData?.last}</span>
         </div>
         <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
             <p>CHANGE</p>
@@ -40,7 +38,7 @@ export default function HistorySectionCard({baseCurrency, baseReceiveCurrency}) 
         </div>
         <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
             <p>% CHANGE</p>
-            <span className='text-green-500'>{currentData.percentageChange}%</span>
+            <span className='text-green-500'>{currentData?.percentageChange}%</span>
         </div>
       </div>
 
