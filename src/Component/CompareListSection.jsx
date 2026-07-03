@@ -33,7 +33,7 @@ export default function CompareListSection({baseCurrency, options}){
           <img src={getFlag(currency.code)} className='w-[25px] h-[25px] border-none rounded' alt={currency.code}/>
         )}
           <span className='flex >{currency.base}</span>
-          <span></span>{currency.code}</span></li>
+          <span>{currency.code}</span></li>
       </ul>
     ))}                
   </div>
