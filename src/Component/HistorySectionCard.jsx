@@ -34,11 +34,11 @@ export default function HistorySectionCard({baseCurrency, baseReceiveCurrency}) 
         </div>
         <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
             <p>CHANGE</p>
-            <span className='text-green-500'>+0.0014</span>
+            <span className={`{currentData?.percentageChange > 0 ? 'text-green-500' : 'text-500'}`}>{currentData?.percentageChange}</span>
         </div>
         <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
             <p>% CHANGE</p>
-            <span className='text-green-500'>{currentData?.percentageChange}%</span>
+            <span className={`${currentData?.percentageChange > 0 ? 'text-green-500' : 'text-red-500'}`}>{currentData?.percentageChange}%</span>
         </div>
       </div>
 
