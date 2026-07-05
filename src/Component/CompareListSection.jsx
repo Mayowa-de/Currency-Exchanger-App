@@ -34,6 +34,7 @@ export default function CompareListSection({baseCurrency, options}){
           </div>
           <div className='flex flex-col gap-[6px]'>
           <span>{currency.rate}</span>
+            <span className='text-10px'>@{currency.rate}</span>
           </div>
         </li>
       </ul>
