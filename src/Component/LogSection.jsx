@@ -1,10 +1,9 @@
 import React from 'react'
 
-export default function FavoriteSection() {
+export default function LogSection() {
   return (
     <div>
       
     </div>
   )
 }
-

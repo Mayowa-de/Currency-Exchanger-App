@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { ChevronDown } from 'lucide-react'
-import HistorySectionCard from './HistorySectionCard.jsx'
+import HistorySectionCard from './HistorySectionCard'
 import CompareListSection from './CompareListSection'
+import FavoriteSection from './FavoriteSection'
+import LogSection from './LogSection'
 
 export default function ListHistoryButton({baseCurrency, options,baseReceiveCurrency}) {
   const [isActive, setisActive] = useState("HISTORY")
@@ -9,6 +11,22 @@ export default function ListHistoryButton({baseCurrency, options,baseReceiveCurr
   const dropdownRef = useRef(null)
 
   const ListTitle = ['HISTORY', 'COMPARE', 'FAVORITES', 'LOG']
+
+  const tabContent = {
+    HISTORY: (
+      <HistorySectionCard baseCurrency={baseCurrency} baseReceiveCurrency={baseReceiveCurrency}/>
+
+    ),
+    COMPARE: (
+      <CompareListSection baseCurrency={baseCurrency} baseReceiveCurrency={baseReceiveCurrency} options={options}/>
+    ),
+    FAVORITES:(
+      <FavoriteSection/>
+    ),
+    LOG:(
+      <LogSection/>
+    )
+  }
 
   // close dropdown when clicking outside
   useEffect(() => {
@@ -67,18 +85,7 @@ export default function ListHistoryButton({baseCurrency, options,baseReceiveCurr
         )}
       </div>
       {/* ListHistoryCard Display */}
-      {isActive === 'HISTORY' ? (
-        <HistorySectionCard baseCurrency={baseCurrency} baseReceiveCurrency={baseReceiveCurrency}/>
-      ) : (
-      <p>No History Card Available </p>
-      )}
-      
-      {/* CompareListSection Display */}
-      {isActive === 'COMPARE' ? (
-      <CompareListSection baseCurrency={baseCurrency} baseReceiveCurrency={baseReceiveCurrency} options={options}/>
-      ) : (
-      <p>No Compare List is Available</p>
-      )}
+      {tabContent[isActive] ?? <p>No Available List</p>}
     </div>
   )
 }
