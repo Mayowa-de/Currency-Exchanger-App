@@ -13,9 +13,7 @@ export default function CompareListSection({baseCurrency, options}){
         const data = await response.json()
 
         setCurrentData(
-          data.currencies?.map(currency => ({
-            ...currency
-          })) || []
+          data.currencies
         )
       } catch (error) {
         console.log("Error can't fetch api", error)
