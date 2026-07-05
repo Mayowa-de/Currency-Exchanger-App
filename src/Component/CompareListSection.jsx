@@ -14,8 +14,7 @@ export default function CompareListSection({baseCurrency, options}){
 
         setCurrentData(
           data.currencies?.map(currency => ({
-            ...currency,
-            base: data.base
+            ...currency
           })) || []
         )
       } catch (error) {
