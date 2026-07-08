@@ -3,7 +3,7 @@ import Logo from '../assets/images/logo.svg'
 
 export default function Header() {
   return (
-    <header className='w-full h-[52px] md:h-[66px] flex gap-[8px]  items-center md:p-[20px] px-[24px]  justify-between '>
+    <header className='w-full h-[52px] md:h-[66px] bg-[#171717] flex gap-[8px] z-50  items-center md:p-[20px] px-[24px]  justify-between '>
       <div className='flex items-center '>
         <img src={Logo} alt="Logo" className='md:w-[180px] w-[107px] md:h-[22px] h-[20px]' />
       </div>
