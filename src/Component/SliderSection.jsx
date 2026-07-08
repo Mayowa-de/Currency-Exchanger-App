@@ -25,7 +25,7 @@ export default function SliderSection({ baseCurrency }) {
   }, [baseCurrency])
 
   return (
-    <section className='relative w-full h-[34px] md:h-[40px] items-center flex bg-[#171719] shadow-md overflow-hidden'>
+    <section className='relative w-full h-[34px] md:h-[40px] items-center flex bg-[#171719] shadow-md overflow-hidden z-50'>
       <div className='relative z-10 md:px-[16px] px-[8px] p-[12px] md:p-[12px] bg-[#CEF739]'>
         <h1 className="text-black tracking-[2px] font-semibold text-[10px] md:text-[12px]">. LIVE MARKETS</h1>
       </div>
