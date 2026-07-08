@@ -10,9 +10,11 @@ function App() {
   const [baseReceiveCurrency, setBaseReceiveCurrency] = useState("EUR")
 
   return (
-    <div className=" w-full flex flex-col items-center ">
+    <div className=" w-full flex flex-col items-center  relative">
+    <div className='flex flex-col w-full fixed '>
       <Header />
       <SliderSection baseCurrency={baseSendCurrency} />
+      </div>
       <Main baseSendCurrency={baseSendCurrency} baseReceiveCurrency={baseReceiveCurrency} setBaseReceiveCurrency={setBaseReceiveCurrency} setBaseSendCurrency={setBaseSendCurrency} />
     </div>
   )
