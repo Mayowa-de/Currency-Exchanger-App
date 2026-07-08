@@ -20,7 +20,7 @@ const [getCode, setgetCode] = useState([])
     fetchCodeData()
   }, [])
   return (
-    <div className='flex flex-col items-center justify-center md:pt-[200px]  md:p-[48px] md:w-[1100px] md:h-[607px] w-full p-[30px] px-[10px]  md:px-[20px]'>
+    <div className='flex flex-col items-center justify-center  md:p-[48px] md:w-[1100px] md:h-[607px] w-full p-[30px] px-[10px]  md:px-[20px]'>
         <FirstCardSection baseSendCurrency={baseSendCurrency} baseReceiveCurrency={baseReceiveCurrency} setBaseReceiveCurrency={setBaseReceiveCurrency} setBaseSendCurrency={setBaseSendCurrency} options={getCode}  />
         <HistorySection baseCurrency={baseSendCurrency} baseReceiveCurrency={baseReceiveCurrency} options={getCode}/>
     </div>

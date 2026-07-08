@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className=" w-full flex flex-col items-center  relative">
-    <div className='flex flex-col w-full fixed '>
+    <div className='flex flex-col w-full relative '>
       <Header />
       <SliderSection baseCurrency={baseSendCurrency} />
       </div>
