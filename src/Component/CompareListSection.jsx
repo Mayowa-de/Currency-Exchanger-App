@@ -4,6 +4,7 @@ import {getFlag} from './crrencyFlags'
 
 export default function CompareListSection({baseCurrency, options}){
   const [currentData, setCurrentData] = useState([])
+  const [currencyName, setCurrencyName] = useState({})
 
   useEffect(() => {
     async function fetchData() {
@@ -21,16 +22,36 @@ export default function CompareListSection({baseCurrency, options}){
     }
     fetchData()
   }, [baseCurrency])
+
+  //currency name fetch directly frankfurter api
+  useEffect(()=>{
+    fetch('https://api.frankfurter.dev/v1/currencies')
+    .then((res)=>res.json())
+    .then((data)=>setCurrencyName(data))
+    
+  }, [])
   return (
-    <div className='flex flex-col  gap-[2px] bg-neutral-700 rounded border-none p-[8px] px-[8px] '>
-      {currentData.map((currency)=>(
-      <ul key={currency.code} className='flex flex-col justify-center gap-[4px] p-[2px] px-[8px] rounded'>
-        <li className='flex bg-neutral-900 border-neutral-600 border-[2px] focus:border-[yellow] text-neutral-500 px-[16px] p-[12px] justify-between text-[18px] rounded-[10px] '>
+    <div className='flex flex-col  gap-[2px] bg-neutral-800 rounded-[16px] border-none p-[8px] px-[8px] justify-center items-center'>
+      <div className='flex gap-[12px] px-[10px] p-[8px]  justify-between w-full'>
+        <div className='flex gap-[12px] '>
+      <h1 className='text-neutral-500'>MULTI-CURRENCY</h1>
+       <p className='text-neutral-200'>1000</p>
+       <p className='text-neutral-200'>FROM</p>
+       <p className='text-neutral-200'>USD</p>
+       </div>
+       <p className='text-neutral-500'> 8 pairs</p>
+       </div>
+      {currentData.slice(1,9).map((currency)=>(
+      <ul key={currency.code} className='flex flex-col justify-center gap-[4px] p-[2px] px-[8px] rounded w-full'>
+        <li className='flex bg-neutral-900 border-neutral-600 border-[2px] focus:border-[yellow] text-neutral-500 px-[16px] p-[10px] justify-between text-[18px] rounded-[10px] '>
           <div className='flex gap-[10px] justify-center r'>
           {getFlag(currency.code) && (
           <img src={getFlag(currency.code)} className='w-[15px] h-[15px] border-none rounded mt-[4.8px]' alt={currency.code}/>
         )}
+        <div className='flex flex-col'>
           <span className='flex text-neutral-50'>{currency.code}</span>
+          <span className='text-neutral-200'>{currencyName[currency.code]}</span>
+          </div>
           </div>
           <div className='flex flex-col gap-[6px]'>
           <span>{currency.rate}</span>
