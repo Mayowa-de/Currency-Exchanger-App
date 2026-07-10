@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { usePageTitle } from './hooks/usePageTitle'
+import  usePageTitle  from './hooks/usePageTitle'
 
 export default function HistorySectionCard({ baseCurrency, baseReceiveCurrency }) {
   const [isActiveDate, setisActiveDate] = useState("1M");

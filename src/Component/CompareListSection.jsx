@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getFlag } from './currencyFlags'
-import {usePageTitle} from './hooks/usePageTitle'
+import usePageTitle from './hooks/usePageTitle'
 
 
 export default function CompareListSection({ baseCurrency, options }) {
