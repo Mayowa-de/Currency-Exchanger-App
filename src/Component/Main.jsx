@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import FirstCardSection from './FirstCardSection'
-import HistorySection from './HistorySection'
+import HistorySection from './Section'
 
 export default function Main({ baseSendCurrency, baseReceiveCurrency, setBaseSendCurrency, setBaseReceiveCurrency }) {
 const [getCode, setgetCode] = useState([])

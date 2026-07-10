@@ -10,7 +10,6 @@ export default function SliderSection({ baseCurrency }) {
         const apiUrl = `https://currency-exchanger-app-backend.onrender.com/api?base=${encodeURIComponent(baseCurrency)}` || 'http://localhost:3000/api'
         const response = await fetch(apiUrl)
         const data = await response.json()
-
         setCurrentData(
           data.currencies?.map(currency => ({
             ...currency,
@@ -25,10 +24,10 @@ export default function SliderSection({ baseCurrency }) {
   }, [baseCurrency])
 
   return (
-    <section className=' w-full h-[34px]  md:h-[40px] items-center flex bg-[#171719] shadow-md overflow-hidden z-50'>
-      
+    <section aria-labelledby='LIVE MARKET' className=' w-full h-[34px]  md:h-[40px] items-center flex bg-[#171719] shadow-md overflow-hidden z-50'>
+
       <div className='relative z-10 md:px-[16px] px-[8px] p-[12px] md:p-[12px] bg-[#CEF739]'>
-        <h1 className="text-black tracking-[2px] font-semibold text-[10px] md:text-[12px]">. LIVE MARKETS</h1>
+        <h1 id='LIVE MARKET' className="text-black tracking-[2px] font-semibold text-[10px] md:text-[12px]">. LIVE MARKETS</h1>
       </div>
 
       <motion.div
@@ -51,7 +50,7 @@ export default function SliderSection({ baseCurrency }) {
           </div>
         ))}
       </motion.div>
-      
+
     </section>
   )
 }
