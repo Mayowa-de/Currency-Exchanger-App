@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import Vertical_Exchange from '../assets/images/icon-exchange-vertical.svg'
 import Exchange from '../assets/images/icon-exchange.svg'
 import StarIcon from '../assets/images/icon-star.svg'
-import { getFlag } from './crrencyFlags'
+import { getFlag } from './currencyFlags'
 import { ChevronDown } from 'lucide-react'
 
 

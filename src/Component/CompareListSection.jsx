@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getFlag } from './crrencyFlags'
+import { getFlag } from './currencyFlags'
 
 
 export default function CompareListSection({ baseCurrency, options }) {
