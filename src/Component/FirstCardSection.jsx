@@ -108,7 +108,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
               }}
                 className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
               <div ref={sendDropdownRef} className='relative w-[110px]'>
-                <button onClick={() => setIsSendOpen(!isSendOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px]'>
+                <button onClick={() => setIsSendOpen(!isSendOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px] focus:ring-[2px] focus:ring-[#CEF739]'>
                   {getFlag(baseSendCurrency) && (
                     <img src={getFlag(baseSendCurrency)} alt={baseSendCurrency} className='w-[15px] h-[15px] border-none rounded-full' />
                   )}
@@ -136,7 +136,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
             </div>
           </div>
 
-          <button onClick={handleConvert} className='w-[48px] h-[48px] px-[10px] p-[10px] bg-[#2E2E2E] rounded-[8px] items-center flex justify-center focus:border-2 focus:border-[#CEF739]' role='button'>
+          <button onClick={handleConvert} className='w-[48px] h-[48px] px-[10px] p-[10px] bg-[#2E2E2E] rounded-[8px] items-center flex justify-center focus:border-2 focus:border-[#CEF739]' >
             <img src={Vertical_Exchange} alt="exchange-icon-vertical" className='w-[20px] h-[20px] items-center flex md:hidden ' />
             <img src={Exchange} alt="exchange-icon" className='w-[20px] h-[20px] items-center md:flex hidden' />
           </button>
@@ -149,11 +149,11 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                 readOnly
                 value={receiveAmount}
                 placeholder="0"
-                className='w-[123px] h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem] rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]'
+                className='w-[123px] h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem] rounded-[8px] border-none focus:ring-[2px] focus:outline-none  focus:ring-[#CEF739]'
 
               />
               <div ref={receiveDropdownRef} className='relative w-[110px]'>
-                <button onClick={() => setIsReceiveOpen(!isReceiveOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px]'>
+                <button onClick={() => setIsReceiveOpen(!isReceiveOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px] focus:ring-[2px] focus:ring-[#CEF739]'>
                   {getFlag(baseReceiveCurrency) && (
                     <img src={getFlag(baseReceiveCurrency)} alt={baseReceiveCurrency} className='w-[15px] h-[15px] border-none rounded-full' />
                   )}
