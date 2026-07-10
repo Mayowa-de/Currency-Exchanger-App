@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getFlag } from './currencyFlags'
 import usePageTitle from './hooks/usePageTitle'
+import StarIcon from '../assets/images/icon-star.svg'
 
 
 export default function CompareListSection({ baseCurrency, options }) {
@@ -45,19 +46,22 @@ export default function CompareListSection({ baseCurrency, options }) {
       </div>
       {currentData.slice(1, 9).map((currency) => (
         <ul key={currency.code} className='flex flex-col justify-center gap-[4px] p-[2px] px-[8px] rounded w-full'>
-          <li className='flex bg-neutral-900 border-neutral-600 border-[2px] focus:border-[yellow] text-neutral-500 px-[16px] p-[10px] justify-between text-[18px] rounded-[10px] '>
-            <div className='flex gap-[10px] justify-center r'>
+          <li className='flex bg-neutral-900 border-neutral-600 border-[2px] focus:ring-[#CEF739] focus:ring-[2px] h-[61px] text-neutral-500 px-[16px] p-[10px] justify-between text-[18px] rounded-[10px] '>
+            <div className='flex gap-[10px] justify-center items-center'>
               {getFlag(currency.code) && (
-                <img src={getFlag(currency.code)} className='w-[15px] h-[15px] border-none rounded mt-[4.8px]' alt={`{currency.code} flag`} />
+                <img src={getFlag(currency.code)} className='w-[24px] h-[24px] border-none rounded ' alt={`{currency.code} flag`} />
               )}
               <div className='flex flex-col'>
                 <span className='flex text-neutral-50'>{currency.code}</span>
                 <span className='text-neutral-200'>{currencyName[currency.code]}</span>
               </div>
             </div>
-            <div className='flex flex-col gap-[6px]'>
+            <div className='flex  gap-[6px]'>
+              <div className='flex flex-col gap-[6px] items-center'>
               <span>{currency.rate}</span>
-              <span className='text-[12px]'>@{currency.rate}</span>
+              <span className='text-[12px]'>@{currency.rate}</span>  
+              </div>
+              <img src={StarIcon} alt='star icon' className='w-[12.53px] h-[12px]' />
             </div>
           </li>
         </ul>
