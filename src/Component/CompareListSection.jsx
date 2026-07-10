@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react'
 import { getFlag } from './currencyFlags'
 import usePageTitle from './hooks/usePageTitle'
 import StarIcon from '../assets/images/icon-star.svg'
-
+import { useFavorite } from './hooks/useFavorite'
 
 export default function CompareListSection({ baseCurrency, options }) {
   const [currentData, setCurrentData] = useState([])
   const [currencyName, setCurrencyName] = useState({})
 
+  const {addFavorite, removeFavorite, favoriteList} = useFavorite()
   usePageTitle('Compare')
   useEffect(() => {
     async function fetchData() {
@@ -47,7 +48,7 @@ export default function CompareListSection({ baseCurrency, options }) {
       {currentData.slice(1, 9).map((currency) => (
         <ul key={currency.code} className='flex flex-col justify-center gap-[4px] p-[2px] px-[8px] rounded w-full'>
           <li className='flex bg-neutral-900 border-neutral-600 border-[2px] focus:ring-[#CEF739] focus:ring-[2px] h-[61px] text-neutral-500 px-[16px] p-[10px] justify-between text-[18px] rounded-[10px] '>
-            <div className='flex gap-[10px] justify-center items-center'>
+            <div onClick={() => addFavorite(currency)} role='button' className='flex gap-[10px] justify-center items-center'>
               {getFlag(currency.code) && (
                 <img src={getFlag(currency.code)} className='w-[24px] h-[24px] border-none rounded ' alt={`{currency.code} flag`} />
               )}
