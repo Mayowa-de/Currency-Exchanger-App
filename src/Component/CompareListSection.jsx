@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { getFlag } from './currencyFlags'
+import {usePageTitle} from './hooks/usePageTitle'
 
 
 export default function CompareListSection({ baseCurrency, options }) {
   const [currentData, setCurrentData] = useState([])
   const [currencyName, setCurrencyName] = useState({})
 
+  usePageTitle('Compare')
   useEffect(() => {
     async function fetchData() {
       try {
