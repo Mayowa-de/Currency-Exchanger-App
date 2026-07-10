@@ -45,7 +45,7 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
       <ul className='md:flex hidden gap-[8px] text-[#FFFF]'>
         {ListTitle.map((tab) => (
           <div className='flex flex-col gap-[4px]' key={tab} onClick={() => setisActive(tab)} role='button'>
-            <li className='p-[8px] text-[16px]'>{tab}</li>
+            <li className='p-[8px] text-[16px] focus:ring-[2px] focus:ring-[#CEF739]'>{tab}</li>
             <hr className={isActive === tab ? 'border-lime-500' : 'border-none'} />
           </div>
         ))}
@@ -56,7 +56,7 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
       <div ref={dropdownRef} className='relative md:hidden w-full'>
         <ul
           onClick={() => setIsOpenList(!isOpenList)}
-          className='flex items-center justify-between w-full h-[40px] px-[12px] text-white bg-neutral-900 border border-neutral-400 rounded cursor-pointer'
+          className='flex items-center justify-between w-full h-[40px] px-[12px] text-white bg-neutral-900 border border-neutral-400 rounded-[8px] cursor-pointer'
         >
           <li>{isActive}</li>
           <ChevronDown
@@ -74,7 +74,7 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
                   setisActive(tab)
                   setIsOpenList(false)
                 }}
-                className={`px-[12px] py-[10px] cursor-pointer text-[14px] hover:bg-neutral-800 ${isActive === tab ? 'text-lime-500' : 'text-white'
+                className={`px-[12px] py-[10px] cursor-pointer text-[14px] hover:bg-neutral-800 ${isActive === tab ? 'bg-lime-500' : 'text-white'
                   }`}
               >
                 {tab}
