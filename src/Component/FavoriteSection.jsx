@@ -9,7 +9,7 @@ export default function FavoritesSection() {
   const { favoriteList, removeFavorite } = useFavorite()
 
   usePageTitle('Favorites')
-
+  // fetching currencies names directly from frankfurter api
   useEffect(() => {
     fetch('https://api.frankfurter.dev/v1/currencies')
       .then((res) => res.json())
@@ -67,6 +67,7 @@ export default function FavoritesSection() {
             <button
               onClick={() => removeFavorite(pair)}
               aria-label={`Remove ${pair.baseCurrency} to ${pair.baseReceiveCurrency} from favorites`}
+              className='bg-neutral-900 w-full p-[8px] border-lime-500 border-[1px] rounded-full'
             >
               <img src={StarIconFilled} alt='' className='w-[12.53px] h-[12px]' />
             </button>
