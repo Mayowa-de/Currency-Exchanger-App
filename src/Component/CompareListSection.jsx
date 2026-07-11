@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { getFlag } from './currencyFlags'
 import usePageTitle from './hooks/usePageTitle'
 import StarIcon from '../assets/images/icon-star.svg'
+import StarIconFilled from '../assets/images/icon-star-filled.svg'
 import useFavorite  from './hooks/useFavorite'
 
 export default function CompareListSection({ baseCurrency, options }) {
@@ -65,8 +66,8 @@ export default function CompareListSection({ baseCurrency, options }) {
               <span>{currency.rate}</span>
               <span className='text-[12px]'>@{currency.rate}</span>  
               </div>
-              <button onClick={() =>(favorited ? removeFavorite(pair) : addFavorite(pair))}>
-              <img src={StarIcon} alt='star icon' className='w-[12.53px] h-[12px]' />
+              <button onClick={() =>(favorited ? removeFavorite(pair) : addFavorite(pair))} className='bg-neutral-900 border-lime-500 border-[1px] rounded-full'>
+              <img src={favorite ? StarIconFilled : StarIcon} alt='star icon' className='w-[12.53px] h-[12px]' />
               </button>
             </div>
           </li>
