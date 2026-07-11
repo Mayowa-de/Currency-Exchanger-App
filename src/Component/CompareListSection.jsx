@@ -67,7 +67,7 @@ export default function CompareListSection({ baseCurrency, options }) {
               <span className='text-[12px]'>@{currency.rate}</span>  
               </div>
               <button onClick={() =>(favorited ? removeFavorite(pair) : addFavorite(pair))} className='bg-neutral-900 border-lime-500 border-[1px] rounded-full'>
-              <img src={favorite ? StarIconFilled : StarIcon} alt='star icon' className='w-[12.53px] h-[12px]' />
+              <img src={favorited ? StarIconFilled : StarIcon} alt='star icon' className='w-[12.53px] h-[12px]' />
               </button>
             </div>
           </li>
