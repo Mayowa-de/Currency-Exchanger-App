@@ -20,5 +20,11 @@ useEffect(() => {
     function removeFavorite(pair) {
         setFavoriteList((prev) => prev.filter((item) => !(item.baseCurrency === pair.baseCurrency && item.baseReceiveCurrency === pair.baseReceiveCurrency)));
     }
-    return { favoriteList, addFavorite, removeFavorite };
+ function isFavorite(baseCurrency, baseReceiveCurrency) {
+  return favoriteList.some(
+    (item) =>
+      item.baseCurrency === baseCurrency && item.baseReceiveCurrency === baseReceiveCurrency
+  );
+ }
+    return { favoriteList, addFavorite, removeFavorite, isFavorite };
 }
