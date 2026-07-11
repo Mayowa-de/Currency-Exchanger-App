@@ -45,12 +45,12 @@ export default function CompareListSection({ baseCurrency, options }) {
         </div>
         <h3 className='text-neutral-500 text-[12px]'> 8 pairs</h3>
       </div>
-      <ul key={currency.code} className='flex flex-col justify-center gap-[4px] p-[2px] px-[8px] rounded w-full'>
+      <ul className='flex flex-col justify-center gap-[4px] p-[2px] px-[8px] rounded w-full'>
       {currentData.slice(1, 9).map((currency) => {
         const pair = {baseCurrency, baseReceiveCurrency: currency.code}
         const favorited =isFavorite(pair.baseCurrency, pair.baseReceiveCurrency)
          return (
-          <li className='flex bg-neutral-900 border-neutral-600 border-[2px] focus:ring-[#CEF739] focus:ring-[2px] h-[61px] text-neutral-500 px-[16px] p-[10px] justify-between text-[18px] rounded-[10px] '>
+          <li key={currency.code} className='flex bg-neutral-900 border-neutral-600 border-[2px] focus:ring-[#CEF739] focus:ring-[2px] h-[61px] text-neutral-500 px-[16px] p-[10px] justify-between text-[18px] rounded-[10px] '>
             <div  role='button' className='flex gap-[10px] justify-center items-center'>
               {getFlag(currency.code) && (
                 <img src={getFlag(currency.code)} className='w-[24px] h-[24px] border-none rounded ' alt={`${currency.code} flag`} />
