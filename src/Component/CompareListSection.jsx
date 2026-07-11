@@ -58,15 +58,15 @@ export default function CompareListSection({ baseCurrency, options }) {
               )}
               <div className='flex flex-col'>
                 <span className='flex text-neutral-50'>{currency.code}</span>
-                <span className='text-neutral-200'>{currencyName[currency.code]}</span>
+                <span className='text-neutral-200 text-[12px]'>{currencyName[currency.code]}</span>
               </div>
             </div>
-            <div className='flex  gap-[6px]'>
-              <div className='flex flex-col gap-[6px] items-center'>
+            <div className='flex  gap-[6px] items-center'>
+              <div className='flex flex-col items-center'>
               <span>{currency.rate}</span>
               <span className='text-[12px]'>@{currency.rate}</span>  
               </div>
-              <button onClick={() =>(favorited ? removeFavorite(pair) : addFavorite(pair))} className='bg-neutral-900 border-lime-500 border-[1px] rounded-full'>
+              <button onClick={() =>(favorited ? removeFavorite(pair) : addFavorite(pair))} className='bg-neutral-900 w-full p-[8px] border-lime-500 border-[1px] rounded-full'>
               <img src={favorited ? StarIconFilled : StarIcon} alt='star icon' className='w-[12.53px] h-[12px]' />
               </button>
             </div>
