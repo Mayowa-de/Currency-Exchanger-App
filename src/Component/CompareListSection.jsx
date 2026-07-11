@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { getFlag } from './currencyFlags'
 import usePageTitle from './hooks/usePageTitle'
 import StarIcon from '../assets/images/icon-star.svg'
-import { useFavorite } from './hooks/useFavorite'
+import useFavorite  from './hooks/useFavorite'
 
 export default function CompareListSection({ baseCurrency, options }) {
   const [currentData, setCurrentData] = useState([])
@@ -46,11 +46,15 @@ export default function CompareListSection({ baseCurrency, options }) {
         <h3 className='text-neutral-500 text-[12px]'> 8 pairs</h3>
       </div>
       {currentData.slice(1, 9).map((currency) => (
+        const pair = {baseCurrency, baseReceiveCurrency: currency.code}
+        const favorited =isFavorite(pair.baseCurrency, pair.baseReceiveCurrency)
+
+        return(
         <ul key={currency.code} className='flex flex-col justify-center gap-[4px] p-[2px] px-[8px] rounded w-full'>
           <li className='flex bg-neutral-900 border-neutral-600 border-[2px] focus:ring-[#CEF739] focus:ring-[2px] h-[61px] text-neutral-500 px-[16px] p-[10px] justify-between text-[18px] rounded-[10px] '>
-            <div onClick={() => addFavorite(currency)} role='button' className='flex gap-[10px] justify-center items-center'>
+            <div  role='button' className='flex gap-[10px] justify-center items-center'>
               {getFlag(currency.code) && (
-                <img src={getFlag(currency.code)} className='w-[24px] h-[24px] border-none rounded ' alt={`{currency.code} flag`} />
+                <img src={getFlag(currency.code)} className='w-[24px] h-[24px] border-none rounded ' alt={`${currency.code} flag`} />
               )}
               <div className='flex flex-col'>
                 <span className='flex text-neutral-50'>{currency.code}</span>
@@ -62,7 +66,9 @@ export default function CompareListSection({ baseCurrency, options }) {
               <span>{currency.rate}</span>
               <span className='text-[12px]'>@{currency.rate}</span>  
               </div>
+              <button onClick={() =>(favorited ? removeFavorite(pair) : addFavorite(pair))}>
               <img src={StarIcon} alt='star icon' className='w-[12.53px] h-[12px]' />
+              </button>
             </div>
           </li>
         </ul>
