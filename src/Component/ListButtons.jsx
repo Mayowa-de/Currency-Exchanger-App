@@ -4,11 +4,14 @@ import HistorySectionCard from './HistorySection'
 import CompareListSection from './CompareListSection'
 import FavoriteSection from './FavoriteSection'
 import LogSection from './LogSection'
+import useFavorite from './hooks/useFavorite'
 
 export default function ListHistoryButton({ baseCurrency, options, baseReceiveCurrency }) {
   const [isActive, setisActive] = useState("HISTORY")
   const [isOpenList, setIsOpenList] = useState(false)
   const dropdownRef = useRef(null)
+  const {favoriteList}  = useFavorite()
+  
 
   const ListTitle = ['HISTORY', 'COMPARE', 'FAVORITES', 'LOG']
 
@@ -45,7 +48,8 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
       <ul className='md:flex hidden gap-[8px] text-[#FFFF]'>
         {ListTitle.map((tab) => (
           <div className='flex flex-col gap-[4px]' key={tab} onClick={() => setisActive(tab)} role='button'>
-            <li className='p-[8px] text-[16px] focus:ring-[2px] focus:ring-[#CEF739]'>{tab}</li>
+            <li className='flex gap-1 p-[8px] text-[16px] focus:ring-[2px] focus:ring-[#CEF739]'>{tab}
+            </li>
             <hr className={isActive === tab ? 'border-lime-500' : 'border-none'} />
           </div>
         ))}
@@ -66,7 +70,7 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
         </ul>
 
         {isOpenList && (
-          <ul className='absolute top-full left-0 w-full bg-neutral-900 border border-neutral-400 border-t-0 rounded-b z-50'>
+          <ul className='absolute top-full left-0 w-full mt-1 bg-neutral-900 border border-neutral-400  rounded z-50'>
             {ListTitle.map((tab) => (
               <li
                 key={tab}
@@ -74,10 +78,12 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
                   setisActive(tab)
                   setIsOpenList(false)
                 }}
-                className={`px-[12px] py-[10px] cursor-pointer text-[14px] hover:bg-neutral-800 ${isActive === tab ? 'bg-lime-500' : 'text-white'
+                className={`px-[12px] flex py-[10px] cursor-pointer text-[14px] hover:bg-neutral-800 ${isActive === tab ? 'bg-lime-500' : 'text-white'
                   }`}
               >
-                {tab}
+                {tab}{tab === 'FAVORITES' && favoriteList.length > 0 && (
+                <span className='ml-[4px] text-[12px] text-[#CEF739]'>({favoriteList.length})</span>
+              )}
               </li>
             ))}
           </ul>
