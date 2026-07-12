@@ -5,6 +5,9 @@ export default {
     extend: {
       colors: {
       background: '#171717',
+    },
+      fontFamily: { 
+        mono: ['JetBrains Mono', 'monospace' ],
       },
       screens: {
         xs: "480px",
