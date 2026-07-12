@@ -9,7 +9,7 @@ export default function CompareListSection({ baseCurrency, options }) {
   const [currentData, setCurrentData] = useState([])
   const [currencyName, setCurrencyName] = useState({})
 
-  const {addFavorite, removeFavorite, favoriteList, isFavorite} = useFavorite()
+  const {addFavorite, removeFavorite,  isFavorite} = useFavorite()
   usePageTitle('Compare')
   useEffect(() => {
     async function fetchData() {
@@ -63,11 +63,11 @@ export default function CompareListSection({ baseCurrency, options }) {
             </div>
             <div className='flex  gap-[6px] items-center'>
               <div className='flex flex-col items-center'>
-              <span>{currency.rate}</span>
-              <span className='text-[12px]'>@{currency.rate}</span>  
+              <span className='text-[16px]'>{currency.rate}</span>
+              <span className='text-[10px]'>@{currency.rate}</span>  
               </div>
-              <button onClick={() =>(favorited ? removeFavorite(pair) : addFavorite(pair))} className='bg-neutral-900 w-full p-[8px] border-lime-500 border-[1px] rounded-full'>
-              <img src={favorited ? StarIconFilled : StarIcon} alt='star icon' className='w-[12.53px] h-[12px]' />
+              <button onClick={() =>(favorited ? removeFavorite(pair) : addFavorite(pair))} className='bg-neutral-900 w-full p-[8px] border-lime-500 border-[1px] rounded'>
+              <img src={favorited ? StarIconFilled : StarIcon} alt='star icon' className='w-[16px] h-[16px]' />
               </button>
             </div>
           </li>
