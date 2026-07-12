@@ -116,7 +116,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                   <ChevronDown size={14} className={`ml-auto transition-transform duration-200 ${isSendOpen ? 'rotate-180' : 'rotate-0'}`} />
                 </button>
                 {isSendOpen && (
-                  <ul className='absolute top-full left-0 mt-[4px] px-[8px] md:w-[250px] w-full max-h-[250px]  overflow-y-auto  z-50 bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px]'>
+                  <ul className='absolute top-full right-0 mt-[4px] p-[6px] px-[8px] w-[376px]  max-h-[466px] overflow-y-hidden  z-50 bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px]'>
                     {options.map((code) => (
                       <li key={code} onClick={() => {
                         setBaseSendCurrency(code)
@@ -161,7 +161,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                   <ChevronDown size={14} className={`ml-auto transition-transform duration-200 ${isReceiveOpen ? 'rotate-180' : 'rotate-0'}`} />
                 </button>
                 {isReceiveOpen && (
-                  <ul className='absolute top-full left-0 mt-[4px] px-[8px] md:w-[250px] w-full max-h-[250px]  overflow-y-auto  z-50 bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px]'>
+                  <ul className='absolute top-full right-0 mt-[4px] p-[8px] px-[8px] w-[376px]  max-h-[466px]  overflow-y-scroll  z-50 bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px]'>
                     {options.map((code) => (
                       <li key={code} onClick={() => {
                         setBaseReceiveCurrency(code)
