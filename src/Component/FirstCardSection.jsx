@@ -152,6 +152,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                 className='w-[123px] h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem] rounded-[8px] border-none focus:ring-[2px] focus:outline-none  focus:ring-[#CEF739]'
 
               />
+              {/* Receive drop-down currencies  */}
               <div ref={receiveDropdownRef} className='relative w-[110px]'>
                 <button onClick={() => setIsReceiveOpen(!isReceiveOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px] focus:ring-[2px] focus:ring-[#CEF739]'>
                   {getFlag(baseReceiveCurrency) && (
@@ -167,7 +168,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                         setBaseReceiveCurrency(code)
                         setIsReceiveOpen(false)
                       }}
-                        className={`flex items-center gap-2 px-[8px] py-[6px] cursor-pointer text-white text-[14px] hover:bg-[#CEF739] hover:text-black ${baseReceiveCurrency === code ? 'bg-[#CEF739] text-black' : ''}`}
+                        className={`flex items-center gap-2 px-[8px] py-[6px] cursor-pointer text-white text-[14px] hover:ring-[#CEF739] hover:ring-2 hover:text-black ${baseReceiveCurrency === code ? 'ring-[#CEF739] ring-2 text-black' : ''}`}
                       >
                         {getFlag(code) && (
                           <img src={getFlag(code)} alt={code} className='w-[18px] h-[12px] object-cover rounded-sm' />
