@@ -51,7 +51,10 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
         return
       }
       setCurrencyRate(rateResult)
-      setReceiveAmount(result)
+      
+      setReceiveAmount(Number(result).toLocaleString())
+
+      // setReceiveAmount(result)
     } catch (err) {
       console.error('Conversion failed:', err.message)
       setConversionError('Conversion failed, try again')
@@ -90,6 +93,34 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
     return () => clearTimeout(timer)
   }, [sendAmount, baseReceiveCurrency, baseSendCurrency])
 
+  if(!baseSendCurrency || !baseReceiveCurrency || !options || options.length === 0) {
+    return  <section className='flex flex-col w-full md:w-[1036px] md:h-[931px]  gap-[16px]'> 
+      <h1 className='text-[1.25rem] text-[jetbrains-mono, regular] tracking-[-0.5px] leading-[120%] text-[#FFFFFF]'>CHECK THE RATE</h1>
+
+           <div className='md:grid md:grid-cols-1 flex flex-col   bg-[#202022] px-[20px] p-[20px] rounded-[24px] gap-[24px]'>
+            <div className='md:flex-row  flex flex-col gap-[12px]  md:gap-[8px] items-center justify-center'>
+             {/* send currencies card */}
+          <div className='md:w-[450px] w-full  md:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'></div>
+
+          {/* convert currencies button */}
+           <button  className='w-[48px] h-[48px] px-[10px] p-[10px] bg-[#2E2E2E] rounded-[8px] items-center flex justify-center focus:border-2 focus:border-[#CEF739]' ></button>
+
+          {/* Receive currencies card */}
+            <div className='laptop:w-[450px] w-full laptop:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'></div>
+          </div>
+          <div className='flex md:justify-between md:flex-row flex-col md:items-center gap-[8px]'>
+            <div className='text-[14px] flex gap-4 w-full'>
+          <span className='text-[#CEF739] flex gap-[4px] items-center bg-[#2E2E2E] px-[10px] p-[10px] w-[123px] h-10 rounded-[8px]'></span>
+        
+          <span className='text-[#CEF739] flex gap-[4px] items-center bg-[#2E2E2E] px-[10px] p-[10px] rounded-[8px] w-[123px] h-10'></span>
+          </div>
+          <button className='focus:ring-[#CEF739] focus:ring-2 focus:outline-none leading-[1.3] tracking-[0.5px] text-neutral-50 text-[12px] bg-[#2E2E2E] h-10 w-[132px] rounded-[8px] px-[12px] p-[8px]'></button>
+          <button className='focus:ring-[#CEF739] focus:ring-2 focus:outline-none leading-[1.3] tracking-[0.5px] text-neutral-50 text-[12px] bg-[#2E2E2E] h-10 w-[132px] rounded-[8px] px-[12px] p-[8px]'></button>
+          </div>
+          </div>
+    </section>
+  }
+
 
   return (
     <section className='flex flex-col w-full md:w-[1036px] md:h-[931px]  gap-[16px]'>
@@ -97,6 +128,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
 
       <div className='md:grid md:grid-cols-1 flex flex-col   bg-[#202022] px-[20px] p-[20px] rounded-[24px] gap-[24px]'>
         <div className='md:flex-row  flex flex-col gap-[12px]  md:gap-[8px] items-center justify-center'>
+        {/* send currencies card */}
           <div className='md:w-[450px] w-full  md:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND</h2>
             <div className='flex justify-between gap-[auto]'>
@@ -136,11 +168,13 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
             </div>
           </div>
 
+           {/* convert currencies button */}
           <button onClick={handleConvert} className='w-[48px] h-[48px] px-[10px] p-[10px] bg-[#2E2E2E] rounded-[8px] items-center flex justify-center focus:border-2 focus:border-[#CEF739]' >
             <img src={Vertical_Exchange} alt="exchange-icon-vertical" className='w-[20px] h-[20px] items-center flex md:hidden ' />
             <img src={Exchange} alt="exchange-icon" className='w-[20px] h-[20px] items-center md:flex hidden' />
           </button>
-
+          
+          {/* Receive currencies card */}
           <div className='laptop:w-[450px] w-full laptop:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>RECEIVE</h2>
             <div className='flex justify-between gap-[auto]'>
@@ -185,6 +219,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
 
 
         <hr className='text-[5px] border-dashed border-[1px] border-neutral-900 leading-1' />
+        {/* Currencies converted display */}
         <div className='flex md:justify-between md:flex-row flex-col md:items-center gap-[8px]'>
           <div className='text-[14px] flex'>
             {isConverting && <span>Converting...</span>}
@@ -195,8 +230,9 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
               </span>
             )}
           </div>
-
-          <div className='flex gap-2 items-center'>
+           
+           {/* Favorite and log conversion buttons */}
+          <div className='flex gap-4 items-center flex-wrap'>
             <button className='bg-[#CEF739] flex  focus:border-neutral-900 focus:border-[1px] focus:ring-[#CEF739] focus:ring-1 focus:outline-none  leading-[1.3] tracking-[0.5px] rounded-[8px] px-[12px] p-[8px] items-center gap-[8px]'>
               <img src={StarIcon} width={'16px'} height={'16px'} alt='star-icon' className='text-neutral-900  overflow-hidden' />
               Favorited
