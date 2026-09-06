@@ -43,11 +43,11 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
   }, [])
 
   return (
-    <div className='laptop:w-[1036px] laptop:gap-[20px] mt-2 flex flex-col gap-[8px]'>
+    <div className='laptop:w-[1036px] laptop:gap-[20px] mt-2 flex flex-col gap-[2px]'>
       {/* Desktop tabs */}
-      <ul className='md:flex hidden gap-[8px] text-[#FFFF]'>
+      <ul className='md:flex hidden gap-[4px]  text-[#FFFF]'>
         {ListTitle.map((tab) => (
-          <div className='flex flex-col gap-[4px]' key={tab} onClick={() => setisActive(tab)} role='button'>
+          <div className='flex flex-col gap-[4px] md:top-4' key={tab} onClick={() => setisActive(tab)} role='button'>
             <li className='flex gap-1 p-[8px] text-[16px] focus:ring-[2px] focus:ring-[#CEF739]'>{tab}
             </li>
             <hr className={isActive === tab ? 'border-lime-500' : 'border-none'} />
