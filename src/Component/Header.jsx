@@ -4,7 +4,7 @@ import Logo from '../assets/images/logo.svg'
 
 export default function Header({baseCurrency}) {
   return (
-    <header className='w-full flex flex-col items-center justify-center gap-0 md:gap-0 z-50 fixed top-0 '>
+    <header className='w-full flex flex-col items-center justify-center gap-0 md:gap-0 z-50 fixed top-0 bg-neutral-900'>
       <div className='w-full h-[52px] md:h-[66px]  flex gap-[8px] z-50 items-center md:p-[20px] px-[24px] justify-between '>
       <div className='flex items-center '>
         <img src={Logo} alt="Logo" className='md:w-[180px] w-[107px] md:h-[22px] h-[20px]' />
