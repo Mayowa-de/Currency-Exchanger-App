@@ -2,10 +2,12 @@ import React, {useState, useEffect} from 'react'
 import FirstCardSection from './FirstCardSection'
 import HistorySection from './Section'
 import useConversionLog from './hooks/useConversionLog'
+import useFavorite from './hooks/useFavorite'
 
 export default function Main({ baseSendCurrency, baseReceiveCurrency, setBaseSendCurrency, setBaseReceiveCurrency }) {
 const [getCode, setgetCode] = useState([])
   const conversionLog = useConversionLog()
+  const favoriteActions = useFavorite()
   
   useEffect(() =>{
   async function fetchCodeData() {
@@ -23,8 +25,8 @@ const [getCode, setgetCode] = useState([])
   }, [])
   return (
     <div className='flex w-full flex-col items-center gap-[32px] px-[10px] py-[32px] md:w-[1100px] md:px-[20px] md:py-[48px]'>
-        <FirstCardSection baseSendCurrency={baseSendCurrency} baseReceiveCurrency={baseReceiveCurrency} setBaseReceiveCurrency={setBaseReceiveCurrency} setBaseSendCurrency={setBaseSendCurrency} options={getCode} addConversionLog={conversionLog.addConversionLog}  />
-        <HistorySection baseCurrency={baseSendCurrency} baseReceiveCurrency={baseReceiveCurrency} options={getCode} conversionLog={conversionLog} />
+        <FirstCardSection baseSendCurrency={baseSendCurrency} baseReceiveCurrency={baseReceiveCurrency} setBaseReceiveCurrency={setBaseReceiveCurrency} setBaseSendCurrency={setBaseSendCurrency} options={getCode} addConversionLog={conversionLog.addConversionLog} favoriteActions={favoriteActions}  />
+        <HistorySection baseCurrency={baseSendCurrency} baseReceiveCurrency={baseReceiveCurrency} options={getCode} conversionLog={conversionLog} favoriteActions={favoriteActions} />
     </div>
   )
 }

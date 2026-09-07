@@ -3,13 +3,12 @@ import { getFlag } from './currencyFlags'
 import usePageTitle from './hooks/usePageTitle'
 import StarIcon from '../assets/images/icon-star.svg'
 import StarIconFilled from '../assets/images/icon-star-filled.svg'
-import useFavorite  from './hooks/useFavorite'
 
-export default function CompareListSection({ baseCurrency, options }) {
+export default function CompareListSection({ baseCurrency, options, favoriteActions }) {
   const [currentData, setCurrentData] = useState([])
   const [currencyName, setCurrencyName] = useState({})
 
-  const {addFavorite, removeFavorite,  isFavorite} = useFavorite()
+  const { addFavorite, removeFavorite, isFavorite } = favoriteActions
   usePageTitle('Compare')
   useEffect(() => {
     async function fetchData() {
@@ -44,7 +43,7 @@ export default function CompareListSection({ baseCurrency, options }) {
           <h2 className='text-neutral-200'>FROM</h2>
           <h3 className='text-neutral-200'>USD</h3>
         </div>
-        <h3 className='text-neutral-500 text-[12px]'> 8 pairs</h3>
+          <h3 className='text-neutral-500 text-[12px]'> {Math.min(currentData.slice(1, 9).length, 8)} pairs</h3>
       </div>
       <ul className='flex flex-col justify-center gap-[4px] p-[2px] px-[8px] rounded w-full'>
       {currentData.slice(1, 9).map((currency) => {

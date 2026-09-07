@@ -4,13 +4,12 @@ import HistorySectionCard from './HistorySection'
 import CompareListSection from './CompareListSection'
 import FavoriteSection from './FavoriteSection'
 import LogSection from './LogSection'
-import useFavorite from './hooks/useFavorite'
 
-export default function ListHistoryButton({ baseCurrency, options, baseReceiveCurrency, conversionLog }) {
+export default function ListHistoryButton({ baseCurrency, options, baseReceiveCurrency, conversionLog, favoriteActions }) {
   const [isActive, setisActive] = useState("HISTORY")
   const [isOpenList, setIsOpenList] = useState(false)
   const dropdownRef = useRef(null)
-  const {favoriteList}  = useFavorite()
+  const { favoriteList } = favoriteActions
   
 
   const ListTitle = ['HISTORY', 'COMPARE', 'FAVORITES', 'LOG']
@@ -21,10 +20,10 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
 
     ),
     COMPARE: (
-      <CompareListSection baseCurrency={baseCurrency} baseReceiveCurrency={baseReceiveCurrency} options={options} />
+      <CompareListSection baseCurrency={baseCurrency} options={options} favoriteActions={favoriteActions} />
     ),
     FAVORITES: (
-      <FavoriteSection />
+      <FavoriteSection baseCurrency={baseCurrency} favoriteActions={favoriteActions} />
     ),
     LOG: (
       <LogSection {...conversionLog} />

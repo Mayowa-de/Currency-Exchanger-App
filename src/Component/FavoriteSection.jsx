@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react'
 import { getFlag } from './currencyFlags'
 import usePageTitle from './hooks/usePageTitle'
-import useFavorite from './hooks/useFavorite'
 import StarIconFilled from '../assets/images/icon-star-filled.svg'
 import { ChevronDown } from 'lucide-react'
 
 
-export default function FavoritesSection({baseCurrency}) {
+export default function FavoritesSection({ baseCurrency, favoriteActions }) {
   const [currentData, setCurrentData] = useState([])
   const [currencyName, setCurrencyName] = useState({})
-  const { favoriteList, removeFavorite } = useFavorite()
+  const { favoriteList, removeFavorite } = favoriteActions
 
   usePageTitle('Favorites')
   // fetching currencies names directly from frankfurter api
@@ -63,6 +62,10 @@ export default function FavoritesSection({baseCurrency}) {
 
       <ul className='flex flex-col justify-center gap-[4px] p-[2px] px-[8px] rounded w-full'>
         {favoriteList.map((pair) => (
+          (() => {
+            const favoriteCurrency = currentData.find((currency) => currency.code === pair.baseReceiveCurrency)
+
+            return (
           <li
             key={`${pair.baseCurrency}-${pair.baseReceiveCurrency}`}
             className='flex bg-neutral-900 border-neutral-600 border-[2px] h-[61px] text-neutral-500 px-[16px] p-[10px] justify-between text-[18px] rounded-[10px]'
@@ -84,10 +87,10 @@ export default function FavoritesSection({baseCurrency}) {
             <div className='flex  gap-[6px] justify-center items-center'>
               <div className='flex flex-col items-center'>
                 <span className='text-[16px]'>
-                  {currentData?.rate}
+                  {favoriteCurrency?.rate ?? '--'}
                 </span>
-             <span className={`${currentData?.percentChange > 0 ? 'text-green-500' : 'text-red-500 flex text-[10px]'} text-[12px]`}>
-              {currentData?.percentChange?.toFixed(2)}
+             <span className={`${favoriteCurrency?.percentageChange >= 0 ? 'text-green-500' : 'text-red-500'} text-[12px]`}>
+              {favoriteCurrency?.percentageChange ?? '--'}%
             </span>
             </div>
             <button
@@ -100,6 +103,8 @@ export default function FavoritesSection({baseCurrency}) {
 
             </div>
           </li>
+            )
+          })()
         ))}
       </ul>
     </section>
