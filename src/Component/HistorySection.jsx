@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import  usePageTitle  from './hooks/usePageTitle'
+import { div } from 'framer-motion/client';
 
 export default function HistorySectionCard({ baseCurrency, baseReceiveCurrency }) {
   const [isActiveDate, setisActiveDate] = useState("1M");
@@ -21,11 +22,27 @@ export default function HistorySectionCard({ baseCurrency, baseReceiveCurrency }
       } catch (error) {
         console.log("Error can't fetch api", error)
       }
+   
     }
     fetchData()
   }, [baseCurrency, baseReceiveCurrency])
+
+    if(!currentData) {
+      return (
+      <div className='md:flex-row flex flex-col md:justify-between gap-[16px]  md:items-center mt-4'>
+        <div className='md:flex gap-[16px] grid grid-cols-2  w-full'>
+          <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022] h-20 w-[132px]'></div>
+          <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022] h-20 w-[132px]'></div>
+          <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022] h-20 w-[132px]'></div>
+          <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022] h-20 w-[132px]'></div>
+        </div>
+        <ul className='flex items-center justify-center gap-[28px] text-neutral-200 w-[286px] h-[42px] rounded-[8px] px-[10px] p-[2px] bg-[#202022]'></ul>
+      </div>
+      )
+    }
+
   return (
-    <div className='md:flex-row flex flex-col md:justify-between gap-[16px]  md:items-center'>
+    <div className='md:flex-row flex flex-col md:justify-between gap-[16px]  md:items-center mt-4 w-full'>
       <div className='md:flex gap-[16px] grid grid-cols-2  w-full'>
         <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
           <p>OPEN</p>
