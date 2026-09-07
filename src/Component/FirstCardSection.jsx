@@ -108,11 +108,11 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
           {/* Receive currencies card */}
             <div className='laptop:w-[450px] w-full laptop:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'></div>
           </div>
-          <div className='flex md:justify-between md:flex-row flex-col md:items-center gap-[8px]'>
+          {/* loading state for converter currencies */}
+          <div className='flex md:justify-between md:flex-row  md:items-center gap-[8px]'>
             <div className='text-[14px] flex gap-4 w-full'>
-          <span className='text-[#CEF739] flex gap-[4px] items-center bg-[#2E2E2E] px-[10px] p-[10px] w-[123px] h-10 rounded-[8px]'></span>
-        
-          <span className='text-[#CEF739] flex gap-[4px] items-center bg-[#2E2E2E] px-[10px] p-[10px] rounded-[8px] w-[123px] h-10'></span>
+          <span className='text-[#CEF739] flex gap-[4px] items-center bg-[#2E2E2E] px-[10px] p-[10px] w-[156px] h-10 rounded-[8px]'></span>
+
           </div>
           <button className='focus:ring-[#CEF739] focus:ring-2 focus:outline-none leading-[1.3] tracking-[0.5px] text-neutral-50 text-[12px] bg-[#2E2E2E] h-10 w-[132px] rounded-[8px] px-[12px] p-[8px]'></button>
           <button className='focus:ring-[#CEF739] focus:ring-2 focus:outline-none leading-[1.3] tracking-[0.5px] text-neutral-50 text-[12px] bg-[#2E2E2E] h-10 w-[132px] rounded-[8px] px-[12px] p-[8px]'></button>
