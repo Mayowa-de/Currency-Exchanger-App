@@ -126,10 +126,10 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
     <section className='flex flex-col w-full md:w-[1036px] md:h-[931px]  gap-[16px] '>
       <h1 className='text-[1.25rem] text-[jetbrains-mono, regular] tracking-[-0.5px] leading-[120%] text-[#FFFFFF]'>CHECK THE RATE</h1>
 
-      <div className='md:grid md:grid-cols-1 flex flex-col   bg-[#202022] px-[20px] p-[20px] rounded-[24px] gap-[24px]'>
+      <div className='md:grid md:grid-cols-1 flex flex-col bg-neutral-700/50 drop-shadow px-[20px] p-[20px] rounded-[24px] gap-[24px]'>
         <div className='md:flex-row  flex flex-col gap-[12px]  md:gap-[8px] items-center justify-center'>
         {/* send currencies card */}
-          <div className='md:w-[450px] w-full  md:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
+          <div className='md:w-[450px] w-full md:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px]'>
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND</h2>
             <div className='flex justify-between gap-[auto]'>
               <input value={sendAmount} onChange={(e) => {
@@ -138,7 +138,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                   setSendAmount(value)
                 }
               }}
-                className='w-[123px] h-[40px] bg-transparent text-[#FFFF] focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
+                className='w-[123px] h-[40px] bg-transparent text-neutral-200 focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
               <div ref={sendDropdownRef} className='relative w-[110px]'>
                 <button onClick={() => setIsSendOpen(!isSendOpen)} className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px] focus:ring-[2px] focus:ring-[#CEF739]'>
                   {getFlag(baseSendCurrency) && (

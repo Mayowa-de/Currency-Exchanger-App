@@ -24,7 +24,7 @@ export default function SliderSection({ baseCurrency }) {
   }, [baseCurrency])
 
   return (
-    <section aria-labelledby='LIVE MARKET' className=' w-full h-[34px] md:h-[40px] items-center flex bg-[#171719] shadow-md overflow-hidden flex z-50'>
+    <section aria-labelledby='LIVE MARKET' className=' w-full h-[34px] md:h-[40px] items-center flex bg-neutral-700/50 shadow-md overflow-hidden  z-50'>
 
       <div className='w-56  z-50 md:px-[16px] px-[20px] p-[12px] md:p-[12px] bg-[#CEF739] flex items-center whitespace-nowrap '>
         <h1 id='LIVE MARKET' className="text-black tracking-[2px] font-semibold text-[10px] md:text-[12px] flex items-center gap-1"><span

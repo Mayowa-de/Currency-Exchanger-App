@@ -10,7 +10,7 @@ function App() {
   const [baseReceiveCurrency, setBaseReceiveCurrency] = useState("EUR")
 
   return (
-    <div className=" w-full flex flex-col items-center justify-center gap-64">
+    <div className=" w-full flex flex-col items-center justify-center gap-64 bg-neutral-900">
     <div className='flex flex-col w-full items-center justify-center gap-10 '>
       <Header baseCurrency={baseSendCurrency} />
       </div>
