@@ -10,6 +10,7 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
   const [isOpenList, setIsOpenList] = useState(false)
   const dropdownRef = useRef(null)
   const { favoriteList } = favoriteActions
+  const { conversionLogs = [] } = conversionLog
   
 
   const ListTitle = ['HISTORY', 'COMPARE', 'FAVORITES', 'LOG']
@@ -80,9 +81,13 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
                 className={`px-[12px] flex py-[10px] cursor-pointer text-[14px] hover:bg-neutral-800 ${isActive === tab ? 'bg-lime-500' : 'text-white'
                   }`}
               >
-                {tab}{tab === 'FAVORITES' && favoriteList.length > 0 && (
-                <span className='ml-[4px] text-[12px] text-[#CEF739]'>({favoriteList.length})</span>
-              )}
+                {tab}
+                {tab === 'FAVORITES' && favoriteList.length > 0 && (
+                  <span className='ml-[4px] text-[12px] text-[#CEF739]'>({favoriteList.length})</span>
+                )}
+                {tab === 'LOG' && conversionLogs.length > 0 && (
+                  <span className='ml-[4px] text-[12px] text-[#CEF739]'>({conversionLogs.length})</span>
+                )}
               </li>
             ))}
           </ul>

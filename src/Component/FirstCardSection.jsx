@@ -239,18 +239,18 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
             layout
             whileHover={{ y: -2, scale: 1.01 }}
             transition={{ type: 'spring', stiffness: 260, damping: 18 }}
-            className='md:w-[450px] w-full md:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px] shadow-[0_10px_30px_rgba(0,0,0,0.15)]'
+            className='md:w-[450px] w-full md:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px] shadow-[0_10px_30px_rgba(0,0,0,0.15)] '
           >
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND</h2>
-            <div className='flex justify-between gap-[auto]'>
+            <div className='relative flex justify-between gap-[auto]'>
               <input value={sendAmount} onChange={(e) => {
                 const value = e.target.value
                 if (/^\d*\.?\d*$/.test(value)) {
                   setSendAmount(value)
                 }
               }}
-                className='w-[123px] h-[40px] bg-transparent text-neutral-200 focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
-              <div ref={sendDropdownRef} className='relative z-30 flex w-full justify-end md:w-[110px]'>
+                className='w-[123px] h-[40px] bg-transparent text-neutral-200 focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px]  outline-none focus:border-[#CEF739]' />
+              <div ref={sendDropdownRef} className='z-30 flex w-full justify-end md:relative md:w-[110px]'>
                 <motion.button
                   whileTap={{ scale: 0.97 }}
                   onClick={() => setIsSendOpen(!isSendOpen)}
@@ -269,7 +269,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                       animate={{ opacity: 1, y: 0, scaleY: 1 }}
                       exit={{ opacity: 0, y: -8, scaleY: 0.94 }}
                       transition={{ duration: 0.18, ease: 'easeOut' }}
-                      className='absolute left-3 top-full z-50 mt-[4px] max-h-[min(520px,70vh)] w-[min(350px,calc(100vw-24px))] max-w-[calc(100vw-24px)] -translate-x-1/2 origin-top overflow-y-auto rounded-[8px] border border-[#3D3D3D] bg-[#2E2E2E] p-[8px] shadow-[0_12px_30px_rgba(0,0,0,0.35)] md:left-auto md:right-0 md:translate-x-0'
+                      className='absolute -left-1/2 top-full z-50 mt-[4px] max-h-[min(520px,70vh)] w-[min(350px,calc(100vw-24px))] max-w-[calc(100vw-24px)] -translate-x-1/2 origin-top overflow-y-auto rounded-[8px] border border-[#3D3D3D] bg-[#2E2E2E] p-[8px] shadow-[0_12px_30px_rgba(0,0,0,0.35)] md:left-auto md:right-0 md:translate-x-0'
                     >
                       {renderCurrencyOptions(baseSendCurrency, sendSearch, setBaseSendCurrency, setSendSearch)}
                     </motion.ul>
@@ -298,7 +298,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
             className={`laptop:w-[450px] w-full laptop:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px] shadow-[0_10px_30px_rgba(0,0,0,0.15)] ${isReceiveOpen ? 'relative z-50' : 'relative z-0'}`}
           >
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>RECEIVE</h2>
-            <div className='flex justify-between gap-[auto]'>
+            <div className='relative flex justify-between gap-[auto]'>
               <motion.input
                 type="text"
                 readOnly
@@ -310,7 +310,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                 className='w-[123px] h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem] rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]'
               />
               {/* Receive drop-down currencies  */}
-              <div ref={receiveDropdownRef} className='relative flex w-full justify-end md:w-[110px]'>
+              <div ref={receiveDropdownRef} className='flex w-full justify-end md:relative md:w-[110px]'>
                 <motion.button
                   whileTap={{ scale: 0.97 }}
                   onClick={() => setIsReceiveOpen(!isReceiveOpen)}
@@ -329,7 +329,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                       animate={{ opacity: 1, y: 0, scaleY: 1 }}
                       exit={{ opacity: 0, y: -8, scaleY: 0.94 }}
                       transition={{ duration: 0.18, ease: 'easeOut' }}
-                      className='absolute left-3 top-full z-50 mt-[4px] max-h-[min(520px,70vh)] w-[min(350px,calc(100vw-24px))] max-w-[calc(100vw-24px)] -translate-x-1/2 origin-top overflow-y-auto rounded-[8px] border border-[#3D3D3D] bg-[#2E2E2E] p-[8px] shadow-[0_12px_30px_rgba(0,0,0,0.35)] md:left-auto md:right-0 md:translate-x-0'
+                      className='absolute -left-1/2 top-full z-50 mt-[4px] max-h-[min(520px,70vh)] w-[min(350px,calc(100vw-24px))] max-w-[calc(100vw-24px)] -translate-x-1/2 origin-top overflow-y-auto rounded-[8px] border border-[#3D3D3D] bg-[#2E2E2E] p-[8px] shadow-[0_12px_30px_rgba(0,0,0,0.35)] md:left-auto md:right-0 md:translate-x-0'
                     >
                       {renderCurrencyOptions(baseReceiveCurrency, receiveSearch, setBaseReceiveCurrency, setReceiveSearch)}
                     </motion.ul>
