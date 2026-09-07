@@ -7,7 +7,7 @@ import { getFlag } from './currencyFlags'
 import { ChevronDown } from 'lucide-react'
 
 
-export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency, baseReceiveCurrency, setBaseReceiveCurrency, options }) {
+export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency, baseReceiveCurrency, setBaseReceiveCurrency, options, addConversionLog }) {
   const [isSendOpen, setIsSendOpen] = useState(false);
   const [isReceiveOpen, setIsReceiveOpen] = useState(false);
   const sendDropdownRef = useRef(null);
@@ -29,6 +29,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
     }
 
     if (baseSendCurrency === baseReceiveCurrency) {
+      setCurrencyRate(1)
       setReceiveAmount(sendAmount)
       return
     }
@@ -64,6 +65,20 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
     }
   }
   const handleConvert = () => currencyConvert()
+
+  const handleLogConversion = () => {
+    if (conversionError || isConverting || !receiveAmount || !sendAmount || !currencyRate) {
+      return
+    }
+
+    addConversionLog({
+      amount: Number(sendAmount),
+      fromCurrency: baseSendCurrency,
+      toCurrency: baseReceiveCurrency,
+      convertedAmount: Number(String(receiveAmount).replaceAll(',', '')),
+      rate: Number(currencyRate),
+    })
+  }
 
   useEffect(() => {
     function handleClickOutsideSend(e) {
@@ -305,6 +320,8 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
+              onClick={handleLogConversion}
+              disabled={isConverting || Boolean(conversionError) || !receiveAmount}
               className='focus:ring-[#CEF739] focus:ring-2 focus:outline-none leading-[1.3] tracking-[0.5px] text-neutral-50 text-[12px] bg-neutral-900 rounded-[8px] px-[12px] p-[8px]'
             >
               LOG CONVERSION

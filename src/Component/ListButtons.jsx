@@ -6,7 +6,7 @@ import FavoriteSection from './FavoriteSection'
 import LogSection from './LogSection'
 import useFavorite from './hooks/useFavorite'
 
-export default function ListHistoryButton({ baseCurrency, options, baseReceiveCurrency }) {
+export default function ListHistoryButton({ baseCurrency, options, baseReceiveCurrency, conversionLog }) {
   const [isActive, setisActive] = useState("HISTORY")
   const [isOpenList, setIsOpenList] = useState(false)
   const dropdownRef = useRef(null)
@@ -27,7 +27,7 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
       <FavoriteSection />
     ),
     LOG: (
-      <LogSection />
+      <LogSection {...conversionLog} />
     )
   }
 
