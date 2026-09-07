@@ -39,7 +39,7 @@ export default function FavoritesSection({baseCurrency}) {
 
   if (favoriteList.length === 0) {
     return (
-      <div className='flex flex-col gap-[2px] bg-neutral-800 rounded-[16px] border-none p-[8px] px-[8px] mt-4 justify-center items-center'>
+      <div className='flex flex-col gap-[2px] bg-neutral-800 rounded-[16px] border-none p-[8px] px-[8px] mt-4 justify-center items-center mb-4'>
         <p className='text-neutral-500 text-[16px] p-[16px]'>
           No favorite pairs yet. Star a currency in Compare to add one.
         </p>
@@ -50,7 +50,7 @@ export default function FavoritesSection({baseCurrency}) {
   return (
     <section
       aria-labelledby='favorites-heading'
-      className='flex flex-col gap-[2px] bg-neutral-800 rounded-[16px] border-none p-[8px] px-[8px] mt-4 justify-center items-center'
+      className='flex flex-col gap-[2px] bg-neutral-800 rounded-[16px] border-none p-[8px] px-[8px] justify-center items-center'
     >
       <div className='flex gap-[12px] px-[10px] p-[8px] justify-between w-full'>
         <h1 id='favorites-heading' className='text-neutral-500 text-[16px]'>

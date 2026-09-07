@@ -36,8 +36,8 @@ export default function CompareListSection({ baseCurrency, options }) {
 
   }, [])
   return (
-    <div className='flex flex-col  gap-[2px] bg-neutral-800 rounded-[16px] border-none p-[8px] px-[8px] justify-center items-center mt-4'>
-      <div className='flex gap-[12px] px-[10px] p-[8px]  justify-between w-full'>
+    <div className='flex flex-col  gap-[2px] bg-neutral-800 rounded-[16px] border-none p-[8px] px-[8px] justify-center items-center mt-4 mb-4'>
+      <div className='flex gap-[12px] px-[10px] p-[8px]  justify-between w-full items-center'>
         <div className='flex gap-[8px] text-[16px] '>
           <h1 className='text-neutral-500 text-[16px] '>MULTI-CURRENCY</h1>
           <h2 className='text-neutral-200'>1000</h2>
@@ -61,7 +61,7 @@ export default function CompareListSection({ baseCurrency, options }) {
                 <span className='text-neutral-200 text-[12px]'>{currencyName[currency.code]}</span>
               </div>
             </div>
-            <div className='flex  gap-[6px] items-center'>
+            <div className='flex  gap-[8px] items-center'>
               <div className='flex flex-col items-center'>
               <span className='text-[16px]'>{currency.rate}</span>
               <span className='text-[10px]'>@{currency.rate}</span>  

@@ -123,7 +123,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
 
 
   return (
-    <section className='flex flex-col w-full md:w-[1036px] md:h-[931px]  gap-[16px]'>
+    <section className='flex flex-col w-full md:w-[1036px] md:h-[931px]  gap-[16px] '>
       <h1 className='text-[1.25rem] text-[jetbrains-mono, regular] tracking-[-0.5px] leading-[120%] text-[#FFFFFF]'>CHECK THE RATE</h1>
 
       <div className='md:grid md:grid-cols-1 flex flex-col   bg-[#202022] px-[20px] p-[20px] rounded-[24px] gap-[24px]'>
