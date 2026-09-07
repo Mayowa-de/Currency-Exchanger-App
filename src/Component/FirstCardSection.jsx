@@ -128,11 +128,11 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, ease: 'easeOut' }}
-      className='flex flex-col w-full md:w-[1036px] md:h-[931px] gap-[16px]'
+      className='flex w-full flex-col gap-[16px] md:w-[1036px]'
     >
       <h1 className='text-[1.25rem] text-[jetbrains-mono, regular] tracking-[-0.5px] leading-[120%] text-[#FFFFFF]'>CHECK THE RATE</h1>
 
-      <div className='md:grid md:grid-cols-1 flex flex-col bg-neutral-700/50 drop-shadow px-[20px] p-[20px] rounded-[24px] gap-[24px]'>
+      <div className='md:grid md:grid-cols-1 flex flex-col bg-[#202022] drop-shadow px-[20px] p-[20px] rounded-[24px] gap-[24px]'>
         <div className='md:flex-row flex flex-col gap-[12px] md:gap-[8px] items-center justify-center'>
           {/* send currencies card */}
           <motion.div
