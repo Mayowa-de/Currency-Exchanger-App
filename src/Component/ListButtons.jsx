@@ -43,7 +43,7 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
   }, [])
 
   return (
-    <div className='flex w-full flex-col gap-[2px] laptop:w-[1036px]'>
+    <div className='flex w-full flex-col gap-[16px] laptop:w-[1036px]'>
       {/* Desktop tabs */}
       <ul className='md:flex hidden gap-[4px]  text-[#FFFF]'>
         {ListTitle.map((tab) => (
