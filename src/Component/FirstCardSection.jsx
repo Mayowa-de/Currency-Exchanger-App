@@ -269,7 +269,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                       animate={{ opacity: 1, y: 0, scaleY: 1 }}
                       exit={{ opacity: 0, y: -8, scaleY: 0.94 }}
                       transition={{ duration: 0.18, ease: 'easeOut' }}
-                      className='absolute -left-1/2 top-full z-50 mt-[4px] max-h-[min(520px,70vh)] w-[min(350px,calc(100vw-24px))] max-w-[calc(100vw-24px)] -translate-x-1/2 origin-top overflow-y-auto rounded-[8px] border border-[#3D3D3D] bg-[#2E2E2E] p-[8px] shadow-[0_12px_30px_rgba(0,0,0,0.35)] md:left-auto md:right-0 md:translate-x-0'
+                      className='absolute -left-10 top-full z-50 mt-[4px] max-h-[min(520px,70vh)] w-[min(350px,calc(100vw-24px))] max-w-[calc(100vw-24px)] -translate-x-1/2 origin-top overflow-y-auto rounded-[8px] border border-[#3D3D3D] bg-[#2E2E2E] p-[8px] shadow-[0_12px_30px_rgba(0,0,0,0.35)] md:left-auto md:right-0 md:translate-x-0'
                     >
                       {renderCurrencyOptions(baseSendCurrency, sendSearch, setBaseSendCurrency, setSendSearch)}
                     </motion.ul>
@@ -329,7 +329,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                       animate={{ opacity: 1, y: 0, scaleY: 1 }}
                       exit={{ opacity: 0, y: -8, scaleY: 0.94 }}
                       transition={{ duration: 0.18, ease: 'easeOut' }}
-                      className='absolute -left-1/2 top-full z-50 mt-[4px] max-h-[min(520px,70vh)] w-[min(350px,calc(100vw-24px))] max-w-[calc(100vw-24px)] translate-x-40 origin-top overflow-y-auto rounded-[8px] border border-[#3D3D3D] bg-[#2E2E2E] p-[8px] shadow-[0_12px_30px_rgba(0,0,0,0.35)] md:left-auto md:right-0 md:translate-x-0'
+                      className='absolute -left-10 top-full z-50 mt-[4px] max-h-[min(520px,70vh)] w-[min(350px,calc(100vw-24px))] max-w-[calc(100vw-24px)] translate-x-40 origin-top overflow-y-auto rounded-[8px] border border-[#3D3D3D] bg-[#2E2E2E] p-[8px] shadow-[0_12px_30px_rgba(0,0,0,0.35)] md:left-auto md:right-0 md:translate-x-0'
                     >
                       {renderCurrencyOptions(baseReceiveCurrency, receiveSearch, setBaseReceiveCurrency, setReceiveSearch)}
                     </motion.ul>
