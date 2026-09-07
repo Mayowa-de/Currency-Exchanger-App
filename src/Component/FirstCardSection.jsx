@@ -32,6 +32,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
     const popularOptions = popularCurrencies.filter((code) => matchingOptions.includes(code))
     const otherOptions = matchingOptions.filter((code) => !popularCurrencies.includes(code))
 
+    // Dropdown menu item component
     const renderOption = (code) => (
       <motion.li
         key={code}
@@ -54,7 +55,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
 
     return (
       <>
-        <div className='sticky top-0 z-10 bg-[#2E2E2E] pb-[8px] flex items-center gap-[8px]  pt-[8px]'>
+        <div className='sticky top-0 z-50 bg-[#2E2E2E] pb-[8px] flex items-center gap-[8px]  pt-[8px]'>
           <label className='flex w-full h-[38px] items-center gap-[8px] rounded-[8px] border border-[#555] bg-[#202022] px-[10px] text-neutral-400'>
             <Search size={15} aria-hidden='true' />
             <input
@@ -86,6 +87,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
     )
   }
 
+  // currencyConvert promise 
   const currencyConvert = async () => {
     setConversionError(null)
 
@@ -130,8 +132,11 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
       setIsConverting(false)
     }
   }
+
+  // currencyConvert promise pass to handleCovert function
   const handleConvert = () => currencyConvert()
 
+  // Log conversion function to add conversion log
   const handleLogConversion = () => {
     if (conversionError || isConverting || !receiveAmount || !sendAmount || !currencyRate) {
       return
@@ -188,6 +193,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
     return () => clearTimeout(timer)
   }, [sendAmount, baseReceiveCurrency, baseSendCurrency])
 
+  // Loading state for the converter card
   if(!baseSendCurrency || !baseReceiveCurrency || !options || options.length === 0) {
     return  <section className='flex flex-col w-full md:w-[1036px] md:h-[931px]  gap-[16px]'> 
       <h1 className='text-[1.25rem] text-[jetbrains-mono, regular] tracking-[-0.5px] leading-[120%] text-[#FFFFFF]'>CHECK THE RATE</h1>
@@ -222,7 +228,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, ease: 'easeOut' }}
-      className='flex w-full flex-col gap-[16px] md:w-[1036px]'
+      className={`relative flex w-full flex-col gap-[16px] md:w-[1036px] ${isReceiveOpen ? 'z-30' : 'z-0'} ${isSendOpen ? 'z-30' : 'z-0'}`}
     >
       <h1 className='text-[1.25rem] text-[jetbrains-mono, regular] tracking-[-0.5px] leading-[120%] text-[#FFFFFF]'>CHECK THE RATE</h1>
 
@@ -244,7 +250,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                 }
               }}
                 className='w-[123px] h-[40px] bg-transparent text-neutral-200 focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px] outline-none focus:border-[#CEF739]' />
-              <div ref={sendDropdownRef} className='relative w-[110px]'>
+              <div ref={sendDropdownRef} className='relative z-30 flex w-full justify-end md:w-[110px]'>
                 <motion.button
                   whileTap={{ scale: 0.97 }}
                   onClick={() => setIsSendOpen(!isSendOpen)}
@@ -263,7 +269,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                       animate={{ opacity: 1, y: 0, scaleY: 1 }}
                       exit={{ opacity: 0, y: -8, scaleY: 0.94 }}
                       transition={{ duration: 0.18, ease: 'easeOut' }}
-                      className='absolute left-0 top-full z-50 mt-[4px] max-h-[min(520px,70vh)] w-[min(350px,calc(100vw-24px))] max-w-[calc(100vw-24px)] origin-top overflow-y-auto rounded-[8px] border border-[#3D3D3D] bg-[#2E2E2E] p-[8px] shadow-[0_12px_30px_rgba(0,0,0,0.35)] md:left-auto md:right-0'
+                      className='absolute left-3 top-full z-50 mt-[4px] max-h-[min(520px,70vh)] w-[min(350px,calc(100vw-24px))] max-w-[calc(100vw-24px)] -translate-x-1/2 origin-top overflow-y-auto rounded-[8px] border border-[#3D3D3D] bg-[#2E2E2E] p-[8px] shadow-[0_12px_30px_rgba(0,0,0,0.35)] md:left-auto md:right-0 md:translate-x-0'
                     >
                       {renderCurrencyOptions(baseSendCurrency, sendSearch, setBaseSendCurrency, setSendSearch)}
                     </motion.ul>
@@ -289,7 +295,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
             layout
             whileHover={{ y: -2, scale: 1.01 }}
             transition={{ type: 'spring', stiffness: 260, damping: 18 }}
-            className='laptop:w-[450px] w-full laptop:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px] shadow-[0_10px_30px_rgba(0,0,0,0.15)]'
+            className={`laptop:w-[450px] w-full laptop:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px] shadow-[0_10px_30px_rgba(0,0,0,0.15)] ${isReceiveOpen ? 'relative z-50' : 'relative z-0'}`}
           >
             <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>RECEIVE</h2>
             <div className='flex justify-between gap-[auto]'>
@@ -304,7 +310,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                 className='w-[123px] h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem] rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]'
               />
               {/* Receive drop-down currencies  */}
-              <div ref={receiveDropdownRef} className='relative w-[110px]'>
+              <div ref={receiveDropdownRef} className='relative flex w-full justify-end md:w-[110px]'>
                 <motion.button
                   whileTap={{ scale: 0.97 }}
                   onClick={() => setIsReceiveOpen(!isReceiveOpen)}
@@ -323,7 +329,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                       animate={{ opacity: 1, y: 0, scaleY: 1 }}
                       exit={{ opacity: 0, y: -8, scaleY: 0.94 }}
                       transition={{ duration: 0.18, ease: 'easeOut' }}
-                      className='absolute right-0 top-full z-50 mt-[4px] max-h-[min(520px,70vh)] w-[min(350px,calc(100vw-24px))] max-w-[calc(100vw-24px)] origin-top overflow-y-auto rounded-[8px] border border-[#3D3D3D] bg-[#2E2E2E] p-[8px] shadow-[0_12px_30px_rgba(0,0,0,0.35)]'
+                      className='absolute left-3 top-full z-50 mt-[4px] max-h-[min(520px,70vh)] w-[min(350px,calc(100vw-24px))] max-w-[calc(100vw-24px)] -translate-x-1/2 origin-top overflow-y-auto rounded-[8px] border border-[#3D3D3D] bg-[#2E2E2E] p-[8px] shadow-[0_12px_30px_rgba(0,0,0,0.35)] md:left-auto md:right-0 md:translate-x-0'
                     >
                       {renderCurrencyOptions(baseReceiveCurrency, receiveSearch, setBaseReceiveCurrency, setReceiveSearch)}
                     </motion.ul>
@@ -366,7 +372,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
               aria-pressed={currentPairIsFavorite}
               className={`flex items-center text-[12px] gap-[8px] rounded-[8px] px-[12px] p-[8px] leading-[1.3] tracking-[0.5px] focus:border-neutral-900 focus:border-[1px] focus:ring-[#CEF739] focus:ring-1 focus:outline-none ${currentPairIsFavorite ? 'bg-[#CEF739] text-neutral-900' : 'bg-neutral-900 text-neutral-50'}`}
             >
-              <img src={currentPairIsFavorite ? StarIcon : StarIcon} width={'16px'} height={'16px'} alt='' className='overflow-hidden ' />
+              <img src={currentPairIsFavorite ? StarIcon : StarIconFilled} width={'16px'} height={'16px'} alt='' className='overflow-hidden ' />
               {currentPairIsFavorite ? 'Favorited' : 'Favorite'}
             </motion.button>
             <motion.button

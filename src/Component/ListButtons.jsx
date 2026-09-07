@@ -42,9 +42,9 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
   }, [])
 
   return (
-    <div className='flex w-full flex-col gap-[16px] laptop:w-[1036px]'>
+    <div className='flex w-full flex-col gap-[16px] z-10 laptop:w-[1036px]'>
       {/* Desktop tabs */}
-      <ul className='md:flex hidden gap-[4px]  text-[#FFFF]'>
+      <ul className='md:flex hidden gap-[4px] text-[#FFFF]'>
         {ListTitle.map((tab) => (
           <div className='flex flex-col gap-[4px] md:top-4' key={tab} onClick={() => setisActive(tab)} role='button'>
             <li className='flex gap-1 p-[8px] text-[16px] focus:ring-[2px] focus:ring-[#CEF739]'>{tab}
@@ -56,7 +56,7 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
       <hr className='border-neutral-600 md:flex hidden' />
 
       {/* Mobile custom dropdown */}
-      <div ref={dropdownRef} className='relative md:hidden w-full'>
+      <div ref={dropdownRef} className='relative md:hidden z-10 w-full'>
         <ul
           onClick={() => setIsOpenList(!isOpenList)}
           className='flex items-center justify-between w-full h-[40px] px-[12px] text-white bg-neutral-900 border border-neutral-400 rounded-[8px] cursor-pointer'
@@ -69,7 +69,7 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
         </ul>
 
         {isOpenList && (
-          <ul className='absolute top-full left-0 w-full mt-1 bg-neutral-900 border border-neutral-400  rounded z-50'>
+          <ul className='absolute top-full left-0 z-20 w-full mt-1 bg-neutral-900 border border-neutral-400 rounded'>
             {ListTitle.map((tab) => (
               <li
                 key={tab}
