@@ -45,15 +45,15 @@ export default function ListHistoryButton({ baseCurrency, options, baseReceiveCu
   return (
     <div className='flex w-full flex-col gap-[16px] z-10 laptop:w-[1036px]'>
       {/* Desktop tabs */}
-      <ul className='md:flex hidden gap-[4px] text-[#FFFF]'>
+      <div className='md:flex hidden gap-[4px] text-[#FFFF]'>
         {ListTitle.map((tab) => (
-          <div className='flex flex-col gap-[4px] md:top-4' key={tab} onClick={() => setisActive(tab)} role='button'>
+          <button role='tab' aria-selected={tab} className='flex flex-col gap-[4px] md:top-4' key={tab} onClick={() => setisActive(tab)} >
             <li className='flex gap-1 p-[8px] text-[16px] focus:ring-[2px] focus:ring-[#CEF739]'>{tab}
             </li>
             <hr className={isActive === tab ? 'border-lime-500' : 'border-none'} />
-          </div>
+          </button>
         ))}
-      </ul>
+      </div>
       <hr className='border-neutral-600 md:flex hidden' />
 
       {/* Mobile custom dropdown */}
