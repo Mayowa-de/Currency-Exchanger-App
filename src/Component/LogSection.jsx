@@ -40,20 +40,18 @@ export default function LogSection({ conversionLogs = [], removeConversionLog, c
         <ul className='mt-[12px] flex flex-col gap-[8px]'>
           {conversionLogs.map((log) => (
             <li key={log.id} className='flex flex-col gap-[12px] rounded-[12px] border border-neutral-700 bg-[#2E2E2E] p-[12px] md:flex-row md:items-center md:justify-between'>
-              <div className='flex min-w-0 items-center  justify-between'>
+              <div className='flex md:min-w-0 items-center justify-between w-full '>
                 <div className='flex items-center gap-[10px]'>
                 <div className='flex items-center gap-[4px]'>
                   {getFlag(log.fromCurrency) && <img src={getFlag(log.fromCurrency)} alt={`${log.fromCurrency} flag`} className='h-[18px] w-[18px] rounded-full object-cover' />}
                   {getFlag(log.toCurrency) && <img src={getFlag(log.toCurrency)} alt={`${log.toCurrency} flag`} className='-ml-[7px] h-[18px] w-[18px] rounded-full object-cover' />}
                 </div>
-                <div className='min-w-0'>
+                <div className='min-w-0 flex flex-col'>
                   <p className='truncate text-[13px] text-neutral-100'>
                     {formatNumber(log.amount)} {log.fromCurrency} <span className='px-[4px] text-[#CEF739]'>-&gt;</span> {formatNumber(log.convertedAmount)} {log.toCurrency}
                   </p>
                   <p className='mt-[3px] text-[10px] text-neutral-500'>1 {log.fromCurrency} = {formatNumber(log.rate)} {log.toCurrency}</p>
-                </div>
-              </div>
-                    <button
+                <button
                   type='button'
                   onClick={() => removeConversionLog(log.id)}
                   aria-label={`Remove ${log.fromCurrency} to ${log.toCurrency} conversion`}
@@ -61,6 +59,8 @@ export default function LogSection({ conversionLogs = [], removeConversionLog, c
                 >
                   <Trash2 size={15} />
                 </button>
+                </div>
+              </div>
               </div>
               <div className='flex items-center justify-between gap-[12px] md:justify-end'>
                 <time dateTime={log.createdAt} className='text-[10px] text-neutral-500'>{formatDate(log.createdAt)}</time>
