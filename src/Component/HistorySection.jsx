@@ -62,7 +62,7 @@ export default function HistorySectionCard({ baseCurrency, baseReceiveCurrency }
 
   return (
     <div className='mt-4 w-full'>
-      <div className='md:flex grid grid-cols-2 w-full gap-[12px] md:gap-[16px]'>
+      <div className='md:flex grid grid-cols-2 w-full gap-[12px] md:gap-[16px]' role='tabpanel' aria-labelledby='history-tab'>
         <div className='flex flex-col gap-[16px] text-neutral-400 md:w-[140px] w-full h-[81px] px-[20px] p-[12px] rounded-[16px] bg-[#202022]'>
           <p>OPEN</p>
           <span className='text-neutral-50'>{Number.isFinite(openRate) ? openRate : '--'}</span>
