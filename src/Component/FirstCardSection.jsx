@@ -17,7 +17,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
   const receiveDropdownRef = useRef(null);
 
   // NEW: input + conversion state
-  const [sendAmount, setSendAmount] = useState(1000);
+  const [sendAmount, setSendAmount] = useState('1,000');
   const [receiveAmount, setReceiveAmount] = useState(0);
   const [currencyRate, setCurrencyRate] = useState(0);
   const [isConverting, setIsConverting] = useState(false);
@@ -26,6 +26,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
   const currentPairIsFavorite = isFavorite(baseSendCurrency, baseReceiveCurrency)
   const popularCurrencies = ['USD', 'EUR', 'GBP']
 
+  // handler for the dropdown 
   const renderCurrencyOptions = (selectedCurrency, searchValue, setCurrency, setSearch) => {
     const normalizedSearch = searchValue.trim().toLowerCase()
     const matchingOptions = options.filter((code) => code.toLowerCase().includes(normalizedSearch))
@@ -43,7 +44,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
           setIsSendOpen(false)
           setIsReceiveOpen(false)
         }}
-        className={`flex cursor-pointer items-center gap-2 rounded-[6px] px-[10px] py-[8px]  text-[14px] text-white ${selectedCurrency === code ? 'border-[#CEF739] border p-4 text-black' : ''}`}
+        className={`flex cursor-pointer items-center gap-2 rounded-[6px] px-[10px] py-[8px] text-[14px] text-white ${selectedCurrency === code ? 'border-[#CEF739] border p-4 text-black' : ''}`}
       >
         {getFlag(code) && (
           <img src={getFlag(code)} alt={code} className='h-[15px] w-[15px] rounded-full object-cover' />
@@ -90,8 +91,9 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
   // currencyConvert promise 
   const currencyConvert = async () => {
     setConversionError(null)
-
-    if (!sendAmount || isNaN(Number(sendAmount)) || Number(sendAmount) <= 0) {
+    const numericSendAmount = Number(String(sendAmount).replaceAll(',', ''))
+     // SendAmount validation
+    if (!numericSendAmount || numericSendAmount <= 0) {
       setConversionError('Enter a valid amount')
       return
     }
@@ -105,16 +107,13 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
     setIsConverting(true)
     try {
 
-      console.log('Converting:', sendAmount, baseSendCurrency, baseReceiveCurrency)
       const response = await fetch(
-        `https://currency-exchanger-app-backend.onrender.com/api?amount=${sendAmount}&from=${baseSendCurrency}&to=${baseReceiveCurrency}` || 'http://localhost:3000/api'
+        `https://currency-exchanger-app-backend.onrender.com/api?amount=${numericSendAmount}&from=${baseSendCurrency}&to=${baseReceiveCurrency}` || 'http://localhost:3000/api'
       )
       const data = await response.json()
-      console.log('API response:', data)
       const currencyMatch = data.currencies.find((c) => c.code === baseReceiveCurrency)
       const rateResult = currencyMatch.rate.toFixed(2)
-      const result = currencyMatch ? currencyMatch.rate.toFixed(2) * Number(sendAmount) : null
-      console.log('Conversion result:', currencyMatch)
+      const result = currencyMatch ? rateResult * Number(numericSendAmount) : null
 
       if (currencyMatch === undefined) {
         setConversionError('Rate not available for this pair')
@@ -124,7 +123,6 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
       
       setReceiveAmount(Number(result).toLocaleString())
 
-      // setReceiveAmount(result)
     } catch (err) {
       console.error('Conversion failed:', err.message)
       setConversionError('Conversion failed, try again')
@@ -143,7 +141,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
     }
 
     addConversionLog({
-      amount: Number(sendAmount),
+      amount: Number(String(sendAmount).replaceAll(',', '')),
       fromCurrency: baseSendCurrency,
       toCurrency: baseReceiveCurrency,
       convertedAmount: Number(String(receiveAmount).replaceAll(',', '')),
@@ -186,12 +184,18 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
     }
   }, [])
 
-  useEffect(() => {
+  useEffect(()=>{
     const timer = setTimeout(() => {
       currencyConvert()
     }, 500)
-    return () => clearTimeout(timer)
-  }, [sendAmount, baseReceiveCurrency, baseSendCurrency])
+   return () => clearTimeout(timer)
+   }, [sendAmount, baseReceiveCurrency, baseSendCurrency])
+  
+   const handleKeyDown = (e)=>{
+    if(e.key === 'Enter'){
+      currencyConvert()
+    }
+   };
 
   // Loading state for the converter card
   if(!baseSendCurrency || !baseReceiveCurrency || !options || options.length === 0) {
@@ -241,17 +245,22 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
             transition={{ type: 'spring', stiffness: 260, damping: 18 }}
             className='md:w-[450px] w-full md:h-[118px] px-[20px] p-[20px] gap-[20px] rounded-[16px] bg-[#2E2E2E] border-[#3D3D3D] border-[1px] shadow-[0_10px_30px_rgba(0,0,0,0.15)] '
           >
-            <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND</h2>
-            <div className='relative flex justify-between gap-[auto]'>
-              <input value={sendAmount} onChange={(e) => {
-                const value = e.target.value
+            <h2 className='text-[#C6C6C6] text-[14px] tracking-[1px]'>SEND </h2>
+            <label className='relative flex justify-between gap-[auto]' htmlFor='send-amount'>
+              <input type='text' id='send-amount' value={sendAmount} onChange={(e) => {
+                const value = e.target.value.replaceAll(',', '')
                 if (/^\d*\.?\d*$/.test(value)) {
-                  setSendAmount(value)
+                  const [integerPart, decimalPart] = value.split('.')
+                  const formattedInteger = integerPart ? Number(integerPart).toLocaleString() : ''
+                  setSendAmount(decimalPart === undefined ? formattedInteger : `${formattedInteger}.${decimalPart}`)
                 }
               }}
+              onKeyDown={handleKeyDown}
                 className='w-[123px] h-[40px] bg-transparent text-neutral-200 focus:border-b-[2px] px-[3px] text-[2rem] focus:ring-2 focus-within:ring-[#CEF739] rounded-[8px] border-none focus:border-[2px]  outline-none focus:border-[#CEF739]' />
+                
               <div ref={sendDropdownRef} className='z-30 flex w-full justify-end md:relative md:w-[110px]'>
                 <motion.button
+                type='button'
                   whileTap={{ scale: 0.97 }}
                   onClick={() => setIsSendOpen(!isSendOpen)}
                   className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px] focus:ring-[2px] focus:ring-[#CEF739]'
@@ -276,11 +285,12 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
                   )}
                 </AnimatePresence>
               </div>
-            </div>
+            </label>
           </motion.div>
 
           {/* convert currencies button */}
           <motion.button
+          type='button'
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.94 }}
             onClick={handleConvert}
@@ -302,16 +312,19 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
               <motion.input
                 type="text"
                 readOnly
+                id='recieve-amount'
                 value={receiveAmount}
                 placeholder="0"
                 initial={{ opacity: 0.7 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.2 }}
                 className='w-[123px] h-[40px] bg-transparent focus:border-b-[2px] text-[#CEF739] pr-[1px] px-[5px] text-[2rem] rounded-[8px] border-none focus:ring-[2px] focus:outline-none focus:ring-[#CEF739]'
+                setReceiveAmount
               />
               {/* Receive drop-down currencies  */}
               <div ref={receiveDropdownRef} className='flex w-full justify-end md:relative md:w-[110px]'>
                 <motion.button
+                type='button'
                   whileTap={{ scale: 0.97 }}
                   onClick={() => setIsReceiveOpen(!isReceiveOpen)}
                   className='flex items-center h-[38px] gap-[8px] w-[95px] bg-[#2E2E2E] border border-[#3D3D3D] rounded-[8px] px-[8px] text-white text-[14px] focus:ring-[2px] focus:ring-[#CEF739]'
@@ -376,6 +389,7 @@ export default function FirstCardSection({ baseSendCurrency, setBaseSendCurrency
               {currentPairIsFavorite ? 'Favorited' : 'Favorite'}
             </motion.button>
             <motion.button
+            type='button'
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
               onClick={handleLogConversion}
